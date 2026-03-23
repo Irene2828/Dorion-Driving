@@ -5,22 +5,26 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Playfair Display", serif;
 
-  /* Updated Accent Palette (Softer, Muted Cyan) */
-  --color-primary: oklch(75% 0.08 175);
-  --color-primary-container: oklch(70% 0.10 175);
-  --color-on-primary: oklch(20% 0.02 175);
-  
-  --color-surface: oklch(12% 0.01 175); /* The Void */
-  --color-surface-container: oklch(18% 0.02 175 / 60%); /* Unified Card Base */
-  --color-surface-container-low: oklch(15% 0.01 175 / 40%);
-  --color-surface-container-high: oklch(22% 0.02 175 / 60%);
-  --color-surface-container-highest: oklch(28% 0.03 175 / 60%);
+  /* Teal Cyan & Yellow Brand Gradient System */
+  --color-primary: oklch(72% 0.14 198);
+  --color-secondary: oklch(85% 0.18 90); /* Brand Yellow */
+  --color-on-primary: oklch(20% 0.04 198);
+
+
+  /* High-End Frosted Glass System (Neutral & Whitish) */
+  --color-surface: oklch(10% 0 0); /* The Pure Dark Void */
+  --color-surface-container: oklch(100% 0 0 / 10%); /* 10% White Frosted */
+  --color-surface-container-low: oklch(100% 0 0 / 5%);
+  --color-surface-container-high: oklch(100% 0 0 / 15%);
+  --color-surface-container-highest: oklch(100% 0 0 / 25%);
   
   --color-on-surface: #F0EDE8;
-  --color-on-surface-variant: oklch(70% 0.05 175);
-  --color-on-surface-micro: oklch(50% 0.05 175);
+  --color-on-surface-variant: oklch(90% 0.01 0 / 80%); /* Bright Silver (AA Pass) */
+  --color-on-surface-micro: oklch(90% 0.01 0 / 60%);   /* Visible Silver (AA Pass for non-paragraph text) */
+
   
-  --color-outline-variant: oklch(100% 0 0 / 15%); /* The Glass Rim */
+  --color-outline-variant: oklch(100% 0 0 / 12%); /* The Silver Glass Rim */
+
   --color-error-container: oklch(40% 0.15 25);
   --color-on-error-container: oklch(95% 0.05 25);
 }

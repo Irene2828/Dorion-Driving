@@ -37,11 +37,11 @@ export default function Login({ onLogin }: { onLogin: () => void }) {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="text-center"
         >
-          <h1 className="text-[24px] font-bold tracking-[0.3em] uppercase text-primary mb-2 font-sans">
+          <h1 className="text-[32px] font-bold tracking-[0.22em] uppercase text-on-surface mb-2 font-serif">
             DORION
           </h1>
-          <p className="text-[10px] font-sans font-bold tracking-[0.3em] text-on-surface-variant mt-3 uppercase">
-            PREMIUM DRIVING ACADEMY
+          <p className="text-[14px] font-sans font-medium tracking-[0.1em] text-on-surface-variant mt-2 uppercase">
+            Premium Driving Academy
           </p>
         </motion.div>
         
@@ -50,15 +50,15 @@ export default function Login({ onLogin }: { onLogin: () => void }) {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8 }}
-          className="mt-12 flex flex-col items-center justify-center text-center px-6"
+          className="mt-12 flex flex-col items-center justify-center text-center px-4 sm:px-6"
         >
-          <p className="font-sans text-[14px] text-on-surface-variant tracking-wide font-medium">
+          <p className="font-sans text-[16px] text-on-surface-variant tracking-wide font-medium">
             Enter your 6-digit student ID to access your dashboard.
           </p>
         </motion.div>
 
         {/* The Interactive Vault Block */}
-        <div className="relative mt-10 w-full max-w-[600px] mx-auto px-6" onClick={() => inputRef.current?.focus()}>
+        <div className="relative mt-10 w-full max-w-[600px] mx-auto px-4 sm:px-6" onClick={() => inputRef.current?.focus()}>
           
           {/* The Hidden Native Input (For Mobile Keyboard) */}
           <input 
@@ -84,12 +84,14 @@ export default function Login({ onLogin }: { onLogin: () => void }) {
                 <motion.div 
                   key={index}
                   animate={{
-                    borderColor: isActive && !isAuthenticating ? 'oklch(85% 0.18 175 / 60%)' : 'var(--color-outline-variant)',
-                    backgroundColor: isAuthenticating ? 'oklch(85% 0.18 175 / 10%)' : 'oklch(100% 0 0 / 4%)',
+                    borderColor: isActive && !isAuthenticating ? 'var(--color-primary)' : 'var(--color-outline-variant)',
+                    backgroundColor: isAuthenticating ? 'oklch(100% 0 0 / 15%)' : 'oklch(100% 0 0 / 8%)',
                     scale: isAuthenticating ? [1, 1.1, 0.9, 1] : 1
                   }}
                   transition={{ duration: 0.3, delay: isAuthenticating ? index * 0.05 : 0 }}
-                  className={`relative w-12 h-16 rounded-[16px] backdrop-blur-2xl border flex items-center justify-center overflow-hidden transition-colors ${isActive ? 'shadow-[0_0_20px_oklch(85%_0.18_175_/_20%)]' : 'shadow-lg'}`}
+                  className={`relative w-[60px] h-[80px] rounded-[20px] bg-surface-container backdrop-blur-2xl border border-outline-variant flex items-center justify-center overflow-hidden transition-all ${isActive ? 'shadow-[0_0_30px_var(--color-primary)/25%]' : 'shadow-lg'}`}
+
+
                 >
                   <AnimatePresence mode="popLayout">
                     {digit && (

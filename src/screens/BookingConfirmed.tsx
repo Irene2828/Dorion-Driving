@@ -12,7 +12,7 @@ export default function BookingConfirmed({ pendingLesson, onDone }: BookingConfi
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[100] flex items-center justify-center px-6 font-sans"
+      className="fixed inset-0 z-[100] flex items-center justify-center px-4 sm:px-6 font-sans"
     >
       {/* Backdrop — Perfectly matched to Dashboard cancel modal */}
       <div className="absolute inset-0 bg-surface/60 backdrop-blur-md" onClick={onDone} />
@@ -22,7 +22,7 @@ export default function BookingConfirmed({ pendingLesson, onDone }: BookingConfi
         animate={{ scale: 1, opacity: 1, y: 0 }}
         className="relative w-full max-w-sm z-10"
       >
-        <div className="relative w-full rounded-[32px] p-8 bg-surface-container backdrop-blur-2xl border border-outline-variant shadow-[0_24px_60px_rgba(0,0,0,0.6)] text-center overflow-hidden flex flex-col items-center">
+        <div className="relative w-full rounded-[32px] p-6 sm:p-8 bg-surface-container backdrop-blur-2xl border border-outline-variant shadow-[0_24px_60px_rgba(0,0,0,0.6)] text-center overflow-hidden flex flex-col items-center">
           {/* Liquid Bubbles Celebration */}
           {[...Array(6)].map((_, i) => (
             <motion.div
@@ -104,17 +104,9 @@ export default function BookingConfirmed({ pendingLesson, onDone }: BookingConfi
                   <h3 className="text-[18px] font-bold text-white tracking-tight leading-tight truncate">
                     {pendingLesson?.title || 'Practice Lesson'}
                   </h3>
-                  {/* Universal Vehicle Chip */}
-                  <div className="px-1.5 py-[2px] rounded-[4px] bg-white/[0.05] border border-outline-variant flex items-center gap-1 shrink-0">
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-on-surface-variant">
-                      <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/>
-                      <circle cx="7" cy="17" r="2"/>
-                      <circle cx="17" cy="17" r="2"/>
-                    </svg>
-                    <span className="text-[8.5px] font-bold tracking-widest uppercase text-on-surface-variant leading-none">Sedan</span>
-                  </div>
                 </div>
               </div>
+
             </div>
 
             {/* Bottom Tier: Instructor & Temporal Detail */}
@@ -143,7 +135,7 @@ export default function BookingConfirmed({ pendingLesson, onDone }: BookingConfi
             <motion.button 
               whileTap={{ scale: 0.95 }}
               onClick={onDone}
-              className="w-full h-[56px] rounded-full bg-gradient-to-r from-primary to-primary-container text-on-primary text-[16px] font-semibold tracking-wide shadow-[0_20px_40px_rgba(0,0,0,0.7)] flex items-center justify-center focus-visible:outline-none"
+              className="w-full h-[56px] rounded-full bg-gradient-to-r from-primary to-secondary text-on-primary text-[16px] font-semibold tracking-wide shadow-[0_20px_40px_rgba(0,0,0,0.7)] flex items-center justify-center focus-visible:outline-none"
             >
               Back to Dashboard
             </motion.button>

@@ -11,7 +11,7 @@ import { UPCOMING_LESSONS as INITIAL_LESSONS } from './constants';
 
 export default function App() {
   const [currentScreen, setCurrentScreen] = useState<Screen>('splash');
-  const [lessons, setLessons] = useState(INITIAL_LESSONS);
+  const [lessons, setLessons] = useState(INITIAL_LESSONS.slice(0, 3));
   const [pendingLesson, setPendingLesson] = useState<any>(null);
 
   const iosTransition = {
@@ -22,7 +22,7 @@ export default function App() {
   };
 
   return (
-    <main className="relative overflow-hidden w-full h-screen text-on-surface selection:bg-primary/30 bg-surface">
+    <main className="relative overflow-hidden w-full h-screen text-on-surface selection:bg-primary/30 bg-surface pb-safe">
       
       {/* Liquid Glass Background */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">

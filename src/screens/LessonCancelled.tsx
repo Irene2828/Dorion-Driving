@@ -11,17 +11,17 @@ export default function LessonCancelled({ pendingLesson, onDone }: LessonCancell
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[100] flex items-center justify-center px-6 font-sans"
+      className="fixed inset-0 z-[100] flex items-center justify-center px-4 sm:px-6 font-sans"
     >
       {/* Backdrop — Perfectly matched to Dashboard cancel modal */}
-      <div className="absolute inset-0 bg-surface/60 backdrop-blur-md" onClick={onDone} />
+      <div className="absolute inset-0 bg-[#080F0E]/80 backdrop-blur-md" onClick={onDone} />
 
       <motion.div 
         initial={{ scale: 0.9, opacity: 0, y: 20 }}
         animate={{ scale: 1, opacity: 1, y: 0 }}
         className="relative w-full max-w-sm z-10"
       >
-        <div className="relative w-full rounded-[32px] p-8 bg-white/[0.04] backdrop-blur-2xl border border-white/[0.12] shadow-[0_24px_60px_rgba(0,0,0,0.6)] text-center overflow-hidden flex flex-col items-center">
+        <div className="relative w-full rounded-[32px] p-6 sm:p-8 bg-surface-container backdrop-blur-2xl border border-outline-variant shadow-[0_24px_60px_rgba(0,0,0,0.6)] text-center overflow-hidden flex flex-col items-center">
           {/* Liquid Bubbles Celebration */}
           {[...Array(6)].map((_, i) => (
             <motion.div
@@ -71,20 +71,11 @@ export default function LessonCancelled({ pendingLesson, onDone }: LessonCancell
                 <span className="text-[22px] font-serif text-white leading-none">{pendingLesson?.day || '26'}</span>
               </div>
               <div className="flex-1 min-w-0">
-                <p className="font-sans text-[9px] text-white/60 tracking-[0.2em] uppercase mb-1">Session Date</p>
+                <p className="font-sans text-[12px] text-white/50 tracking-wide font-medium mb-0.5">Session date</p>
                 <div className="flex items-center gap-2">
                   <p className="font-sans text-white text-[16px] font-semibold truncate">{pendingLesson?.title || 'Practice Lesson'}</p>
-                  
-                  {/* Universal Vehicle Chip */}
-                  <div className="px-1.5 py-[2px] rounded-[4px] bg-white/[0.05] border border-white/[0.1] flex items-center gap-1 shrink-0">
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#7A9B97" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/>
-                      <circle cx="7" cy="17" r="2"/>
-                      <circle cx="17" cy="17" r="2"/>
-                    </svg>
-                    <span className="text-[8.5px] font-bold tracking-widest uppercase text-[#7A9B97] leading-none">Sedan</span>
-                  </div>
                 </div>
+
               </div>
             </div>
 
@@ -92,8 +83,8 @@ export default function LessonCancelled({ pendingLesson, onDone }: LessonCancell
 
             {/* Refund Status Row */}
             <div className="flex items-center justify-between">
-              <p className="font-sans text-[9px] text-on-surface-variant tracking-[0.2em] uppercase">Refund Status</p>
-              <p className="text-primary font-sans font-bold text-[10px] tracking-widest uppercase">Processed</p>
+              <p className="font-sans text-[12px] text-on-surface-variant font-medium">Refund status</p>
+              <p className="text-primary font-sans font-bold text-[14px] tracking-wide">Processed</p>
             </div>
           </motion.div>
 
@@ -101,7 +92,7 @@ export default function LessonCancelled({ pendingLesson, onDone }: LessonCancell
             <motion.button 
             whileTap={{ scale: 0.95 }}
             onClick={onDone}
-            className="w-full h-[56px] rounded-full bg-gradient-to-r from-primary to-primary-container text-on-primary text-[16px] font-semibold tracking-wide shadow-[0_20px_40px_rgba(0,0,0,0.7)] flex items-center justify-center focus-visible:outline-none"
+            className="w-full h-[56px] rounded-full bg-gradient-to-r from-primary to-secondary text-on-primary text-[16px] font-semibold tracking-wide shadow-[0_20px_40px_rgba(0,0,0,0.7)] flex items-center justify-center focus-visible:outline-none"
           >
               Back to Dashboard
             </motion.button>

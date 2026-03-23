@@ -32,9 +32,9 @@ export default function SplashScreen({ onAnimationComplete }: SplashScreenProps)
           {/* The Liquid Void — Organic Background Blobs */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_#080F0E_70%)]" />
-            <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-[#00E5CC]/[0.05] rounded-full blur-[120px]" />
+            <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-[var(--color-primary)]/[0.05] rounded-full blur-[120px]" />
             <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-blue-900/[0.08] rounded-full blur-[120px]" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#00E5CC]/[0.03] rounded-full blur-[120px]" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[var(--color-primary)]/[0.03] rounded-full blur-[120px]" />
           </div>
 
           {/* Central Content Stack */}
@@ -52,7 +52,7 @@ export default function SplashScreen({ onAnimationComplete }: SplashScreenProps)
                 initial={{ y: '-150%', skewY: -10 }}
                 animate={{ y: '150%' }}
                 transition={{ delay: 0.8, duration: 2.5, ease: "linear" }}
-                className="absolute inset-x-0 h-[80%] bg-gradient-to-b from-transparent via-[#00E5CC]/20 to-transparent z-[0]"
+                className="absolute inset-x-0 h-[80%] bg-gradient-to-b from-transparent via-primary/20 via-secondary/20 to-transparent z-[0]"
               />
               
               {/* Steering Wheel Icon — Pure Geometric Strokes */}
@@ -82,7 +82,7 @@ export default function SplashScreen({ onAnimationComplete }: SplashScreenProps)
                 initial={{ opacity: 0, y: 5 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 2.5, duration: 1 }}
-                className="text-[10px] font-sans font-medium tracking-[0.3em] text-[#A3B8B6] uppercase mt-2.5"
+                className="text-[10px] font-sans font-medium tracking-[0.3em] text-[var(--color-on-surface-variant)] uppercase mt-2.5"
               >
                 Premium Driving Academy
               </motion.p>
@@ -101,7 +101,7 @@ export default function SplashScreen({ onAnimationComplete }: SplashScreenProps)
                 initial={{ x: '-100%' }}
                 animate={{ x: '200%' }}
                 transition={{ delay: 3.2, duration: 1.2, repeat: 1, ease: "easeInOut" }}
-                className="w-full h-full bg-[#00E5CC]/60 rounded-full"
+                className="w-full h-full bg-[var(--color-primary)]/60 rounded-full"
               />
             </div>
           </motion.div>

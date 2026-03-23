@@ -85,21 +85,20 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen pt-28 pb-[calc(72px+48px+env(safe-area-inset-bottom,0px))] w-full max-w-[600px] mx-auto px-6 relative"
+      className="min-h-screen pt-28 pb-[calc(72px+48px+env(safe-area-inset-bottom,0px))] w-full max-w-[600px] mx-auto px-4 sm:px-6 relative"
     >
-      <header className="fixed top-0 inset-x-0 z-50 px-6 pt-5 pb-4 flex justify-center bg-white/[0.04] backdrop-blur-3xl border-b border-white/[0.08]">
-        <div className="w-full max-w-[600px] flex justify-between items-center">
+      <header className="fixed top-0 inset-x-0 z-50 px-4 sm:px-6 pt-5 pb-4 flex justify-center bg-white/[0.04] backdrop-blur-3xl border-b border-white/[0.08]">
+        <div className="w-full max-w-[600px] flex justify-between items-center relative">
           {/* Left: Back Button styled like avatar */}
-          <button onClick={onBack} className="relative w-12 h-12 rounded-full overflow-hidden border border-white/10 shrink-0 flex items-center justify-center bg-white/5 text-[#7A9B97] hover:text-[#00E5CC] transition-colors">
+          <button onClick={onBack} className="relative w-12 h-12 rounded-full overflow-hidden border border-white/10 shrink-0 flex items-center justify-center bg-white/5 text-[var(--color-on-surface-micro)] hover:text-[var(--color-primary)] transition-colors">
             <ChevronLeft size={20} className="mr-0.5" />
           </button>
 
-          {/* Center: Wordmark */}
-          <div className="flex flex-col items-center justify-center text-center">
-            <span className="text-[18px] font-bold tracking-widest uppercase leading-none font-sans text-primary">
-              DORION
-            </span>
-          </div>
+          {/* Center: Wordmark (Centered) */}
+          <h1 className="absolute left-1/2 -translate-x-1/2 text-[18px] font-bold tracking-[0.2em] uppercase leading-none font-sans text-primary">
+            DORION
+          </h1>
+
 
           {/* Right: Chat */}
           <button className="relative w-12 h-12 flex items-center justify-center active:opacity-60 transition-opacity text-on-surface-variant">
@@ -112,10 +111,10 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
       </header>
 
       {/* Conversational Booking Header */}
-      <motion.div 
+        <motion.div 
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        className="p-6 relative overflow-hidden rounded-[32px] bg-surface-container backdrop-blur-2xl border border-outline-variant shadow-[0_12px_40px_rgba(0,0,0,0.3)] mb-12"
+        className="p-4 sm:p-6 relative overflow-hidden rounded-[32px] bg-surface-container backdrop-blur-2xl border border-outline-variant shadow-[0_12px_40px_rgba(0,0,0,0.3)] mb-12"
       >
         <div className="absolute -top-4 -right-4 w-32 h-32 rounded-full pointer-events-none" style={{ background: 'var(--color-primary-container) / 10%', filter: 'blur(20px)' }} />
         <div className="relative z-10">
@@ -130,12 +129,12 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
 
       <section className="mb-12">
         <div className="flex justify-between items-end mb-4">
-          <h3 className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#7A9B97] font-sans">SELECT DATE</h3>
+          <h3 className="text-[10px] uppercase tracking-[0.2em] font-bold text-[var(--color-on-surface-micro)] font-sans">SELECT DATE</h3>
           <span className="text-[#F0EDE8]/60 text-xs font-medium uppercase tracking-widest font-sans">May 2026</span>
         </div>
         <motion.div 
           animate={shakeField === 'date' ? shakeAnimation : {}}
-          className="flex gap-4 overflow-x-auto no-scrollbar pb-4 -mx-6 px-6"
+          className="flex gap-4 overflow-x-auto no-scrollbar pb-4 -mx-4 sm:-mx-6 px-4 sm:px-6"
         >
           {DAYS.map((d, i) => {
             const isActive = selectedDate?.id === d.id;
@@ -164,7 +163,7 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
 
       <div className="flex flex-col gap-8">
         <section>
-          <h3 className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#7A9B97] mb-4">AVAILABLE TIMES</h3>
+          <h3 className="text-[10px] uppercase tracking-[0.2em] font-bold text-[var(--color-on-surface-micro)] mb-4">AVAILABLE TIMES</h3>
           <motion.div 
             animate={shakeField === 'time' ? shakeAnimation : {}}
             className="space-y-3"
@@ -178,7 +177,7 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: 0.2 + i * 0.05 }}
                   onClick={() => setSelectedTime(slot)}
-                  className={`w-full py-5 px-6 flex justify-between items-center transition-all relative overflow-hidden text-left active:scale-[0.98] hover:bg-white/5 ${isSelected ? 'bg-white/[0.12] border border-primary/60 rounded-[16px]' : 'bg-surface-container border border-outline-variant rounded-[16px]'}`}
+                  className={`w-full py-5 px-4 sm:px-6 flex justify-between items-center transition-all relative overflow-hidden text-left active:scale-[0.98] hover:bg-white/5 ${isSelected ? 'bg-white/[0.12] border border-primary/60 rounded-[16px]' : 'bg-surface-container border border-outline-variant rounded-[16px]'}`}
                 >
                   <div className="flex-1 relative z-10 pl-2">
                     <span className="text-[18px] font-serif font-normal text-white tracking-wide">
@@ -200,7 +199,7 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
         </section>
 
         <section>
-          <h3 className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#7A9B97] mb-4">INSTRUCTOR</h3>
+          <h3 className="text-[10px] uppercase tracking-[0.2em] font-bold text-[var(--color-on-surface-micro)] mb-4">INSTRUCTOR</h3>
           <motion.div 
             animate={shakeField === 'instructor' ? shakeAnimation : {}}
             className="grid grid-cols-3 gap-3"
@@ -212,7 +211,7 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.4 + i * 0.1 }}
                 onClick={() => setSelectedInstructor(instructor.id)}
-                className={`p-6 flex flex-col items-center text-center transition-all relative overflow-hidden hover:bg-white/5 active:scale-95 ${selectedInstructorId === instructor.id ? 'bg-white/[0.12] border border-primary/60 rounded-[16px]' : 'bg-surface-container border border-outline-variant rounded-[16px]'}`}
+                className={`p-4 sm:p-6 flex flex-col items-center text-center transition-all relative overflow-hidden hover:bg-white/5 active:scale-95 ${selectedInstructorId === instructor.id ? 'bg-white/[0.12] border border-primary/60 rounded-[16px]' : 'bg-surface-container border border-outline-variant rounded-[16px]'}`}
               >
                 <div className={`relative z-10 w-11 h-11 rounded-full p-[2px] mb-3 ml-1 border ${selectedInstructorId === instructor.id ? 'border-primary' : 'border-transparent'}`}>
                   {/* Premium Monogram Avatar Replacement */}
@@ -222,7 +221,11 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
                     </span>
                   </div>
                 </div>
-                <h4 className={`relative z-10 text-[9px] uppercase tracking-widest font-bold pl-1 font-sans ${selectedInstructorId === instructor.id ? 'text-primary' : 'text-on-surface-variant'}`}>{instructor.name}</h4>
+                <h4 className={`relative z-10 text-[14px] leading-tight tracking-wide font-semibold pl-1 font-sans mt-1.5 ${selectedInstructorId === instructor.id ? 'text-primary' : 'text-on-surface-variant'}`}>
+                  {instructor.name.split(' ').map((part, i) => (
+                    <span key={i} className="block">{part}</span>
+                  ))}
+                </h4>
                 
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-50 mt-1">
                   <polyline points="6 9 12 15 18 9" />
@@ -234,7 +237,7 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
       </div>
 
       <div className="mt-12">
-        <h3 className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#7A9B97] mb-4">CONFIRM SELECTION</h3>
+        <h3 className="text-[10px] uppercase tracking-[0.2em] font-bold text-[var(--color-on-surface-micro)] mb-4">CONFIRM SELECTION</h3>
         <motion.div 
           initial={{ y: 40, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -242,7 +245,7 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
           className="flex flex-col items-center"
         >
           {/* Unified Premium Preview Card */}
-          <motion.div layoutId="hero-card" className="w-full bg-white/[0.04] backdrop-blur-2xl border border-white/[0.12] rounded-[32px] px-6 py-5 shadow-[0_12px_40px_rgba(0,0,0,0.3)]">
+          <motion.div layoutId="hero-card" className="w-full bg-surface-container backdrop-blur-2xl border border-outline-variant rounded-[32px] px-4 sm:px-6 py-5 shadow-[0_12px_40px_rgba(0,0,0,0.3)]">
             <div className="flex items-center gap-4">
               
               {/* The Global Standard Glass Calendar Badge */}
@@ -257,7 +260,7 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
 
               {/* The Text Stack: Hero Hierarchy */}
               <div className="flex-1 min-w-0 flex flex-col justify-center gap-1">
-                <p className="font-sans text-[9px] text-[#7A9B97] tracking-[0.2em] uppercase">Scheduled Lesson</p>
+                <p className="font-sans text-[9px] text-[var(--color-on-surface-micro)] tracking-[0.2em] uppercase">Scheduled Lesson</p>
                 
                 {/* Hero Title: Auto-calculates based on current progress */}
                 <h3 className="text-[18px] font-bold text-white tracking-tight leading-tight truncate">
@@ -265,27 +268,17 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
                 </h3>
                 
                 {/* Supporting Instructor Detail */}
-                <div className="flex items-center gap-1.5 text-white/50">
-                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <div className="flex items-center gap-1.5">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-on-surface-variant">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                     <circle cx="12" cy="7" r="4" />
                   </svg>
-                  <span className="font-sans text-[13px] font-medium leading-none">
+                  <span className="font-sans text-[14px] font-medium leading-none text-on-surface-variant">
                     {INSTRUCTORS.find(i => i.id === selectedInstructorId)?.name || 'Marcus Chen'}
                   </span>
                 </div>
 
-                {/* Universal Vehicle Chip */}
-                <div className="flex items-center gap-1.5 mt-2">
-                  <div className="px-1.5 py-[2px] rounded-[4px] bg-white/[0.05] border border-white/[0.1] flex items-center gap-1 shrink-0">
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#7A9B97" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/>
-                      <circle cx="7" cy="17" r="2"/>
-                      <circle cx="17" cy="17" r="2"/>
-                    </svg>
-                    <span className="text-[8.5px] font-bold tracking-widest uppercase text-[#7A9B97] leading-none">Sedan</span>
-                  </div>
-                </div>
+
               </div>
 
               {/* The Time: Perfectly Centered Right-Aligned */}
@@ -294,7 +287,7 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
                   <span className="font-serif text-[20px] tracking-wide">
                     {selectedTime ? selectedTime.time.split(' — ')[0] : '--:--'}
                   </span>
-                  <div className="px-1.5 py-[2px] rounded-md bg-white/[0.08] border border-white/[0.12] font-sans text-[9px] font-bold tracking-[0.15em] text-white/70 uppercase">
+                  <div className="px-1.5 py-[2px] rounded-md bg-white/[0.08] border border-white/[0.12] font-sans text-[9px] font-bold tracking-[0.15em] text-primary uppercase">
                     {selectedTime ? (parseInt(selectedTime.time.split(':')[0]) >= 12 ? 'PM' : 'AM') : 'PM'}
                   </div>
                 </div>
@@ -327,7 +320,7 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
                 
                 onConfirm();
               }}
-              className="relative w-full h-[56px] rounded-full bg-gradient-to-r from-primary to-primary-container text-on-primary text-[16px] font-semibold tracking-wide shadow-[0_20px_40px_rgba(0,0,0,0.7)] transition-all flex items-center justify-center overflow-hidden"
+              className="relative w-full h-[56px] rounded-full bg-gradient-to-r from-primary to-secondary text-on-primary text-[16px] font-semibold tracking-wide shadow-[0_20px_40px_rgba(0,0,0,0.7)] transition-all flex items-center justify-center overflow-hidden"
             >
               {/* Haptic Ripple Glow */}
               <motion.div 
@@ -346,9 +339,9 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
     </div>
 
       {/* Liquid Glass Floating Footer — Unified with Dashboard */}
-      <div className="fixed bottom-6 left-4 right-4 z-[90] pointer-events-none flex justify-center">
-        <div className="w-full max-w-[600px] px-6 pointer-events-auto h-[72px]">
-          <div className="w-full h-full bg-surface-container backdrop-blur-3xl border border-outline-variant border-t-white/[0.25] shadow-[inset_0_1px_1px_rgba(255,255,255,0.2),0_20px_40px_rgba(0,0,0,0.7)] rounded-[36px] grid grid-cols-5 items-end px-2 pt-3 pb-8 relative" aria-label="Bottom navigation" role="navigation">
+      <div className="fixed bottom-6 inset-x-0 z-[90] pointer-events-none">
+        <div className="w-full max-w-[600px] mx-auto px-4 sm:px-6 pointer-events-auto h-[72px] overflow-visible">
+          <div className="w-full h-full bg-surface-container backdrop-blur-3xl border border-outline-variant border-t-white/[0.25] shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_8px_20px_rgba(0,0,0,0.6)] rounded-[36px] grid grid-cols-5 items-end px-2 pt-3 pb-8 relative overflow-visible" aria-label="Bottom navigation" role="navigation">
             
             <motion.button 
               onClick={onBack}
@@ -374,14 +367,18 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
               <span className="text-[11px] tracking-wide font-semibold text-on-surface-variant">Study</span>
             </button>
 
-            <div className="flex flex-col items-center -mt-8">
-              <div className="w-14 h-14 rounded-full flex items-center justify-center shadow-[0_8px_20px_oklch(65%_0.15_160_/_0.3)] bg-gradient-to-r from-primary to-primary-container">
+            {/* Centered FAB Overlay */}
+            <div className="absolute left-1/2 -translate-x-1/2 -top-7 z-20">
+              <div className="w-14 h-14 rounded-full flex items-center justify-center shadow-[0_8px_24px_rgba(0,215,255,0.3)] bg-gradient-to-r from-primary to-secondary">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-on-primary">
                   <line x1="12" y1="5" x2="12" y2="19" />
                   <line x1="5" y1="12" x2="19" y2="12" />
                 </svg>
               </div>
             </div>
+
+            <div className="col-start-3" /> {/* Spacer for grid layout */}
+
 
             <button 
               className="flex flex-col items-center gap-1 opacity-40 pointer-events-none"
@@ -391,7 +388,7 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
                 <rect x="2" y="5" width="20" height="14" rx="2"/>
                 <line x1="2" y1="10" x2="22" y2="10"/>
               </svg>
-              <span className="text-[11px] tracking-wide font-semibold text-on-surface-variant">Wallet</span>
+              <span className="text-[11px] tracking-wide font-semibold text-on-surface-variant">Bills</span>
             </button>
 
             <button 
@@ -412,7 +409,7 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
             initial={{ opacity: 0, y: 50, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.9 }}
-            className="fixed bottom-24 left-1/2 -translate-x-1/2 z-[100] px-6 py-3 rounded-full bg-white/[0.1] backdrop-blur-3xl border border-primary/30 shadow-[0_8px_32px_oklch(85%_0.18_175_/_20%)]"
+            className="fixed bottom-24 left-1/2 -translate-x-1/2 z-[100] px-6 py-3 rounded-full bg-white/[0.1] backdrop-blur-3xl border border-primary/30 shadow-[0_8px_32px_oklch(85%_0.18_205_/_20%)]"
           >
             <p className="text-[13px] font-medium text-white tracking-wide whitespace-nowrap">
               {toastMessage}

@@ -28,6 +28,7 @@
 @layer base {
   body {
     @apply bg-surface text-on-surface font-sans antialiased;
+    scrollbar-gutter: stable;
   }
 }
 

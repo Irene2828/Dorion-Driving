@@ -58,7 +58,7 @@ export default function Login({ onLogin }: { onLogin: () => void }) {
         </motion.div>
 
         {/* The Interactive Vault Block */}
-        <div className="relative mt-10 w-full max-w-2xl mx-auto px-6" onClick={() => inputRef.current?.focus()}>
+        <div className="relative mt-10 w-full max-w-[600px] mx-auto px-6" onClick={() => inputRef.current?.focus()}>
           
           {/* The Hidden Native Input (For Mobile Keyboard) */}
           <input 

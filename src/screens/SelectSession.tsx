@@ -85,10 +85,10 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen pt-28 pb-[calc(72px+48px+env(safe-area-inset-bottom,0px))] w-full max-w-2xl mx-auto px-6 relative"
+      className="min-h-screen pt-28 pb-[calc(72px+48px+env(safe-area-inset-bottom,0px))] w-full max-w-[600px] mx-auto px-6 relative"
     >
       <header className="fixed top-0 inset-x-0 z-50 px-6 pt-5 pb-4 flex justify-center bg-white/[0.04] backdrop-blur-3xl border-b border-white/[0.08]">
-        <div className="w-full max-w-2xl flex justify-between items-center">
+        <div className="w-full max-w-[600px] flex justify-between items-center">
           {/* Left: Back Button styled like avatar */}
           <button onClick={onBack} className="relative w-12 h-12 rounded-full overflow-hidden border border-white/10 shrink-0 flex items-center justify-center bg-white/5 text-[#7A9B97] hover:text-[#00E5CC] transition-colors">
             <ChevronLeft size={20} className="mr-0.5" />
@@ -347,7 +347,7 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
 
       {/* Liquid Glass Floating Footer — Unified with Dashboard */}
       <div className="fixed bottom-6 left-4 right-4 z-[90] pointer-events-none flex justify-center">
-        <div className="w-full max-w-[390px] px-4 pointer-events-auto h-[72px]">
+        <div className="w-full max-w-[600px] px-6 pointer-events-auto h-[72px]">
           <div className="w-full h-full bg-surface-container backdrop-blur-3xl border border-outline-variant border-t-white/[0.25] shadow-[inset_0_1px_1px_rgba(255,255,255,0.2),0_20px_40px_rgba(0,0,0,0.7)] rounded-[36px] grid grid-cols-5 items-end px-2 pt-3 pb-8 relative" aria-label="Bottom navigation" role="navigation">
             
             <motion.button 

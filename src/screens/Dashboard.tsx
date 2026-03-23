@@ -76,7 +76,7 @@ export default function Dashboard({ lessons, onAddLesson, onReschedule, onCancel
     >
       {/* Liquid Glass Header */}
       <header className="fixed top-0 inset-x-0 h-24 z-50 bg-[#080F0E]/40 backdrop-blur-2xl border-b border-white/[0.05] flex justify-center pt-8 px-6">
-        <div className="w-full max-w-2xl flex items-center justify-between">
+        <div className="w-full max-w-[600px] flex items-center justify-between">
           {/* Hamburger Icon */}
           <button className="p-3 -ml-3 text-white/70 hover:text-white transition-colors focus-visible:outline-none" aria-label="Open navigation menu">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
@@ -103,7 +103,7 @@ export default function Dashboard({ lessons, onAddLesson, onReschedule, onCancel
         </div>
       </header>
 
-      <main className="w-full max-w-2xl mx-auto px-6 pt-[136px] pb-32">
+      <main className="w-full max-w-[600px] mx-auto px-6 pt-[136px] pb-32">
         <AnimatePresence mode="wait">
         {activeTab === 'schedule' && (
           <motion.div 
@@ -139,7 +139,7 @@ export default function Dashboard({ lessons, onAddLesson, onReschedule, onCancel
                   </div>
 
                   {/* Progress Bar with car indicator */}
-                  <div className="relative h-1.5 rounded-full mt-3" style={{ background: 'rgba(255,255,255,0.08)' }}>
+                  <div className="relative h-1.5 rounded-full mt-[18px]" style={{ background: 'rgba(255,255,255,0.08)' }}>
                     
                     {/* Filled track */}
                     <motion.div
@@ -149,44 +149,26 @@ export default function Dashboard({ lessons, onAddLesson, onReschedule, onCancel
                       animate={{ width: '65%' }}
                       transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
                     >
-                      {/* Tiny car at the leading edge */}
-                      <div
-                        className="absolute -right-3 -top-[9px]"
-                        style={{ color: '#5EEAD4' }}
-                      >
-                        <svg
-                          width="20"
-                          height="12"
-                          viewBox="0 0 20 12"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          {/* Car body */}
-                          <path
-                            d="M1 8h18v2a1 1 0 01-1 1H2a1 1 0 01-1-1V8z"
-                            fill="currentColor"
-                            opacity="0.9"
-                          />
-                          {/* Car roof */}
-                          <path
-                            d="M4 8L6 4h8l2 4"
-                            stroke="currentColor"
-                            strokeWidth="1"
-                            strokeLinejoin="round"
-                            fill="currentColor"
-                            opacity="0.9"
-                          />
-                          {/* Left wheel */}
-                          <circle cx="4.5" cy="10.5" r="1.5" fill="#080F0E" stroke="currentColor" strokeWidth="0.8"/>
-                          {/* Right wheel */}
-                          <circle cx="15.5" cy="10.5" r="1.5" fill="#080F0E" stroke="currentColor" strokeWidth="0.8"/>
-                        </svg>
-                      </div>
-                    </motion.div>
-                  </div>
+                    {/* Minimal Side-Profile Car Indicator */}
+                    <div 
+                      className="absolute right-0 z-20"
+                      style={{
+                        top: '50%',
+                        transform: 'translate(50%, -75%)', // Shifted up slightly to sit "on" the bar
+                      }}
+                    >
+                      <svg width="24" height="12" viewBox="0 0 24 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 8.5 C1 7.5 2 7 3 7 L6 4 L16 4 L19 7 L22 7 C23 7 23.5 7.5 23.5 8.5 L23.5 9.5 C23.5 10 23 10.5 22 10.5 L20.5 10.5 C20.5 11.5 19.5 12 18.5 12 C17.5 12 16.5 11.5 16.5 10.5 L7.5 10.5 C7.5 11.5 6.5 12 5.5 12 C4.5 12 3.5 11.5 3.5 10.5 L2 10.5 C1.5 10.5 1 10 1 9.5 Z" fill="#5EEAD4"/>
+                        <path d="M7 7 L8.5 4.5 L14.5 4.5 L16 7 Z" fill="rgba(8,15,14,0.5)"/>
+                        <circle cx="5.5" cy="10.5" r="1.5" fill="#080F0E" stroke="#5EEAD4" strokeWidth="0.75"/>
+                        <circle cx="18.5" cy="10.5" r="1.5" fill="#080F0E" stroke="#5EEAD4" strokeWidth="0.75"/>
+                      </svg>
+                    </div>
+                  </motion.div>
+                </div>
 
                   {/* Completion text */}
-                  <p className="text-[11px] mt-3" style={{ color: '#3D5553' }}>
+                  <p className="text-[12px] mt-3 text-right" style={{ color: '#4A615F' }}>
                     Est. completion — August 26
                   </p>
                 </div>
@@ -325,7 +307,7 @@ export default function Dashboard({ lessons, onAddLesson, onReschedule, onCancel
                                 <polyline points="8 14 12 18 16 14"/>
                               </svg>
                             </div>
-                            <span className="text-[10px] font-bold text-on-surface-variant tracking-wide uppercase">Reschedule</span>
+                            <span className="text-[10px] font-bold text-on-surface-variant tracking-wide">Reschedule</span>
                           </button>
 
                           {/* Cancel Interaction (Cyan Iconography) */}
@@ -342,7 +324,7 @@ export default function Dashboard({ lessons, onAddLesson, onReschedule, onCancel
                                 <line x1="6" y1="6" x2="18" y2="18"/>
                               </svg>
                             </div>
-                            <span className="text-[10px] font-bold text-primary tracking-wide uppercase">Cancel</span>
+                            <span className="text-[10px] font-bold text-primary tracking-wide">Cancel</span>
                           </button>
                         </div>
                       </motion.div>
@@ -445,7 +427,7 @@ export default function Dashboard({ lessons, onAddLesson, onReschedule, onCancel
 
       {/* Liquid Glass Floating Footer */}
       <div className="fixed bottom-6 left-4 right-4 z-[90] pointer-events-none flex justify-center">
-        <div className="w-full max-w-[390px] px-4 pointer-events-auto h-[72px]">
+        <div className="w-full max-w-[600px] px-6 pointer-events-auto h-[72px]">
           <div className="w-full h-full bg-surface-container backdrop-blur-3xl border border-outline-variant border-t-white/[0.25] shadow-[inset_0_1px_1px_rgba(255,255,255,0.2),0_20px_40px_rgba(0,0,0,0.7)] rounded-[36px] grid grid-cols-5 items-end px-2 pt-3 pb-8 relative" aria-label="Bottom navigation" role="navigation">
             
             <motion.button 

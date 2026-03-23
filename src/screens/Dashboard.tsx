@@ -115,20 +115,20 @@ export default function Dashboard({ lessons, onAddLesson, onReschedule, onCancel
             <section className="mb-9">
               {/* Progress card */}
               {!hasMissedLesson && (
-                <div className="p-6 relative overflow-hidden rounded-[20px] bg-white/[0.08] backdrop-blur-2xl border border-white/[0.15] border-t-white/[0.25] shadow-[inset_0_1px_1px_rgba(255,255,255,0.2),0_12px_40px_rgba(0,0,0,0.5)]">
-                  <div className="absolute -top-4 -left-4 w-24 h-24 rounded-full pointer-events-none" style={{ background: 'rgba(0,229,204,0.08)', filter: 'blur(16px)' }} />
+                <div className="p-6 relative overflow-hidden rounded-[32px] bg-surface-container backdrop-blur-2xl border border-outline-variant shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_8px_20px_rgba(0,0,0,0.6)]">
+                  <div className="absolute -top-4 -left-4 w-24 h-24 rounded-full pointer-events-none" style={{ background: 'oklch(75% 0.08 175 / 8%)', filter: 'blur(16px)' }} />
                   <div className="flex justify-between items-start mb-3 relative z-10">
                     <div className="flex-1">
-                      <p className="text-[17px] font-semibold text-[#F0F4F3] leading-tight">
+                      <p className="text-[17px] font-semibold text-on-surface leading-tight">
                         Hi Julian!
                       </p>
                       <div className="flex items-baseline justify-between mt-1.5 w-full pr-2">
-                        <p className="text-[15px] text-[#7A9B97] leading-normal max-w-[280px]">
-                          Good news — you've <span className="text-[#F0F4F3]">completed</span> <br />
-                          <span className="text-[#F0F4F3]">16 </span> 
-                          out of <span className="text-[#F0F4F3]">25</span> required lessons!
+                        <p className="text-[15px] text-on-surface-variant leading-normal max-w-[280px]">
+                          Good news — you've <span className="text-on-surface">completed</span> <br />
+                          <span className="text-on-surface">16 </span> 
+                          out of <span className="text-on-surface">25</span> required lessons!
                         </p>
-                        <button className="flex items-center gap-1 text-[10px] text-[#00E5CC] uppercase tracking-[0.2em] font-bold hover:opacity-80 transition-opacity ml-4 shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00E5CC]">
+                        <button className="flex items-center gap-1 text-[10px] text-primary uppercase tracking-[0.2em] font-bold hover:opacity-80 transition-opacity ml-4 shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
                           DETAILS
                           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                             <polyline points="6 9 12 15 18 9" />
@@ -138,21 +138,57 @@ export default function Dashboard({ lessons, onAddLesson, onReschedule, onCancel
                     </div>
                   </div>
 
-                  {/* Liquid Progress Bar */}
-                <div className="flex-1 h-3 bg-white/[0.04] rounded-full relative overflow-hidden">
-                  <motion.div 
-                    initial={{ width: 0 }}
-                    animate={{ width: '45%' }}
-                    transition={{ duration: 1.2, ease: "easeOut", delay: 0.6 }}
-                    className="absolute top-0 left-0 h-full bg-gradient-to-r from-primary to-primary-container"
-                  />
-                </div>
-
-                  <div className="flex justify-end items-center mt-2 relative z-10">
-                    <p className="text-[12px] text-on-surface-variant font-medium tracking-wide">
-                      Est. completion — Aug 26
-                    </p>
+                  {/* Progress Bar with car indicator */}
+                  <div className="relative h-1.5 rounded-full mt-3" style={{ background: 'rgba(255,255,255,0.08)' }}>
+                    
+                    {/* Filled track */}
+                    <motion.div
+                      className="h-full rounded-full relative"
+                      style={{ background: 'linear-gradient(90deg, #3d9e8e, #5EEAD4)' }}
+                      initial={{ width: 0 }}
+                      animate={{ width: '65%' }}
+                      transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+                    >
+                      {/* Tiny car at the leading edge */}
+                      <div
+                        className="absolute -right-3 -top-[9px]"
+                        style={{ color: '#5EEAD4' }}
+                      >
+                        <svg
+                          width="20"
+                          height="12"
+                          viewBox="0 0 20 12"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          {/* Car body */}
+                          <path
+                            d="M1 8h18v2a1 1 0 01-1 1H2a1 1 0 01-1-1V8z"
+                            fill="currentColor"
+                            opacity="0.9"
+                          />
+                          {/* Car roof */}
+                          <path
+                            d="M4 8L6 4h8l2 4"
+                            stroke="currentColor"
+                            strokeWidth="1"
+                            strokeLinejoin="round"
+                            fill="currentColor"
+                            opacity="0.9"
+                          />
+                          {/* Left wheel */}
+                          <circle cx="4.5" cy="10.5" r="1.5" fill="#080F0E" stroke="currentColor" strokeWidth="0.8"/>
+                          {/* Right wheel */}
+                          <circle cx="15.5" cy="10.5" r="1.5" fill="#080F0E" stroke="currentColor" strokeWidth="0.8"/>
+                        </svg>
+                      </div>
+                    </motion.div>
                   </div>
+
+                  {/* Completion text */}
+                  <p className="text-[11px] mt-3" style={{ color: '#3D5553' }}>
+                    Est. completion — August 26
+                  </p>
                 </div>
               )}
             </section>
@@ -370,7 +406,7 @@ export default function Dashboard({ lessons, onAddLesson, onReschedule, onCancel
                     </div>
                     {/* The Highway Divider — Subtle Road Motif */}
                     <div className="w-full h-px bg-transparent border-t border-dashed border-outline-variant" 
-                      style={{ borderImage: 'repeating-linear-gradient(to right, oklch(95% 0 0 / 0.15) 0, oklch(95% 0 0 / 0.15) 8px, transparent 8px, transparent 16px) 1' }} 
+                      style={{ borderImage: 'repeating-linear-gradient(to right, #F0EDE826 0, #F0EDE826 8px, transparent 8px, transparent 16px) 1' }} 
                     />
                     <div className="flex items-start gap-3">
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="mt-0.5 shrink-0 text-primary">
@@ -408,17 +444,17 @@ export default function Dashboard({ lessons, onAddLesson, onReschedule, onCancel
       </AnimatePresence>
 
       {/* Liquid Glass Floating Footer */}
-      <div className="fixed bottom-8 left-0 right-0 z-[90] pointer-events-none flex justify-center">
-        <div className="w-full max-w-2xl px-6 pointer-events-auto h-[72px]">
-          <div className="w-full h-full bg-surface-container backdrop-blur-3xl border border-outline-variant border-t-white/[0.25] shadow-[inset_0_1px_1px_rgba(255,255,255,0.2),0_20px_40px_rgba(0,0,0,0.7)] rounded-[36px] flex items-center justify-between pl-6 pr-4 relative" aria-label="Bottom navigation" role="navigation">
+      <div className="fixed bottom-6 left-4 right-4 z-[90] pointer-events-none flex justify-center">
+        <div className="w-full max-w-[390px] px-4 pointer-events-auto h-[72px]">
+          <div className="w-full h-full bg-surface-container backdrop-blur-3xl border border-outline-variant border-t-white/[0.25] shadow-[inset_0_1px_1px_rgba(255,255,255,0.2),0_20px_40px_rgba(0,0,0,0.7)] rounded-[36px] grid grid-cols-5 items-end px-2 pt-3 pb-8 relative" aria-label="Bottom navigation" role="navigation">
             
             <motion.button 
               onClick={() => setActiveTab('schedule')}
               whileTap={{ scale: 0.9 }}
-              className="relative flex flex-col items-center justify-center min-w-[56px] h-full gap-1"
+              className="flex flex-col items-center gap-1"
               aria-label="Navigate to Schedule"
             >
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={activeTab === 'schedule' ? 'var(--color-primary)' : 'oklch(95% 0 0 / 0.4)'} strokeWidth="1.5" strokeLinecap="round">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={activeTab === 'schedule' ? 'var(--color-primary)' : '#F0EDE866'} strokeWidth="1.5" strokeLinecap="round">
                 <rect x="3" y="4" width="18" height="18" rx="2"/>
                 <line x1="16" y1="2" x2="16" y2="6"/>
                 <line x1="8" y1="2" x2="8" y2="6"/>
@@ -431,7 +467,7 @@ export default function Dashboard({ lessons, onAddLesson, onReschedule, onCancel
             <motion.button 
               onClick={() => setActiveTab('study')}
               whileTap={{ scale: 0.9 }}
-              className="relative flex flex-col items-center justify-center min-w-[56px] h-full gap-1"
+              className="flex flex-col items-center gap-1"
               aria-label="Navigate to Study Material"
             >
               <BookOpen size={20} className={activeTab === 'study' ? 'text-primary' : 'text-on-surface-variant'} />
@@ -439,7 +475,7 @@ export default function Dashboard({ lessons, onAddLesson, onReschedule, onCancel
               {activeTab === 'study' && <motion.div layoutId="navDot" className="absolute bottom-2 w-1 h-1 rounded-full bg-primary shadow-[0_0_8px_var(--color-primary)]" />}
             </motion.button>
 
-            <div className="relative flex flex-col items-center justify-center -mt-8">
+            <div className="flex flex-col items-center -mt-8">
               <motion.button 
                 whileTap={{ scale: 0.9 }}
                 onClick={onAddLesson}
@@ -456,21 +492,21 @@ export default function Dashboard({ lessons, onAddLesson, onReschedule, onCancel
             <motion.button 
               onClick={() => setActiveTab('payments')}
               whileTap={{ scale: 0.9 }}
-              className="relative flex flex-col items-center justify-center min-w-[56px] h-full gap-1"
+              className="flex flex-col items-center gap-1"
               aria-label="Navigate to Payments"
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={activeTab === 'payments' ? '#00E5CC' : 'rgba(255,255,255,0.4)'} strokeWidth="1.5" strokeLinecap="round">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={activeTab === 'payments' ? 'var(--color-primary)' : '#F0EDE866'} strokeWidth="1.5" strokeLinecap="round">
                 <rect x="2" y="5" width="20" height="14" rx="2"/>
                 <line x1="2" y1="10" x2="22" y2="10"/>
               </svg>
-              <span className={`text-[11px] tracking-wide font-semibold ${activeTab === 'payments' ? 'text-[#00E5CC]' : 'text-white/60'}`}>Wallet</span>
-              {activeTab === 'payments' && <motion.div layoutId="navDot" className="absolute bottom-2 w-1 h-1 rounded-full bg-[#00E5CC] shadow-[0_0_8px_#00E5CC]" />}
+              <span className={`text-[11px] tracking-wide font-semibold ${activeTab === 'payments' ? 'text-primary' : 'text-on-surface-variant'}`}>Wallet</span>
+              {activeTab === 'payments' && <motion.div layoutId="navDot" className="absolute bottom-2 w-1 h-1 rounded-full bg-primary shadow-[0_0_8px_var(--color-primary)]" />}
             </motion.button>
 
             <motion.button 
               onClick={() => setActiveTab('profile')}
               whileTap={{ scale: 0.9 }}
-              className="relative flex flex-col items-center justify-center min-w-[56px] h-full gap-1"
+              className="flex flex-col items-center gap-1"
               aria-label="Navigate to Profile"
             >
               <div className={`w-5 h-5 rounded-full border-[1.5px] ${activeTab === 'profile' ? 'border-primary' : 'border-on-surface-variant'} flex items-center justify-center overflow-hidden bg-white/5`}>

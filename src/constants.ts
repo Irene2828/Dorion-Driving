@@ -21,11 +21,11 @@ export const INSTRUCTORS: Instructor[] = [
 export const UPCOMING_LESSONS: Lesson[] = [
   { id: 1, month: 'JAN', day: '18', title: 'Session 17', 
     instructor: 'Marcus Chen', time: '09:00 AM', 
-    accentColor: '#00E5CC', location: 'South Shore Route' },
+    accentColor: '#5EEAD4', location: 'South Shore Route' },
   { id: 2, month: 'MAR', day: '06', title: 'Session 18', 
     instructor: 'Alex Reed', time: '11:00 AM', 
-    accentColor: '#00E5CC', location: 'Longueuil Center' },
+    accentColor: '#5EEAD4', location: 'Longueuil Center' },
   { id: 3, month: 'MAY', day: '14', title: 'Session 19', 
     instructor: 'Sarah Vance', time: '02:00 PM', 
-    accentColor: '#00E5CC', location: 'Brossard Pickup' },
+    accentColor: '#5EEAD4', location: 'Brossard Pickup' },
 ];

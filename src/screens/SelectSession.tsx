@@ -131,7 +131,7 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
       <section className="mb-12">
         <div className="flex justify-between items-end mb-4">
           <h3 className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#7A9B97] font-sans">SELECT DATE</h3>
-          <span className="text-[#F0F4F3]/60 text-xs font-medium uppercase tracking-widest font-sans">May 2026</span>
+          <span className="text-[#F0EDE8]/60 text-xs font-medium uppercase tracking-widest font-sans">May 2026</span>
         </div>
         <motion.div 
           animate={shakeField === 'date' ? shakeAnimation : {}}
@@ -345,61 +345,67 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
         </motion.div>
     </div>
 
-      {/* Liquid Glass Floating Footer Pill — Unified with Dashboard */}
-      <div className="fixed bottom-8 left-0 right-0 z-[90] pointer-events-none flex justify-center">
-        <div className="w-full max-w-2xl px-6 pointer-events-auto h-[72px]">
-        <div className="w-full h-full bg-white/[0.08] backdrop-blur-3xl border border-white/[0.15] border-t-white/[0.25] shadow-[inset_0_1px_1px_rgba(255,255,255,0.2),0_20px_40px_rgba(0,0,0,0.7)] rounded-[36px] flex items-center justify-between pl-6 pr-4 relative" aria-label="Bottom navigation" role="navigation">
-          
-          <button 
-            onClick={onBack}
-            className="relative flex flex-col items-center justify-center min-w-[56px] h-full gap-1"
-            aria-label="Navigate to Schedule"
-          >
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="1.5" strokeLinecap="round">
-              <rect x="3" y="4" width="18" height="18" rx="2"/>
-              <line x1="16" y1="2" x2="16" y2="6"/>
-              <line x1="8" y1="2" x2="8" y2="6"/>
-              <line x1="3" y1="10" x2="21" y2="10"/>
-            </svg>
-            <span className="text-[11px] tracking-wide font-semibold text-white/60">Schedule</span>
-          </button>
-
-          <div className="relative flex flex-col items-center justify-center min-w-[56px] h-full gap-1 opacity-40 pointer-events-none">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
-              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-            </svg>
-            <span className="text-[11px] tracking-wide font-semibold text-white/60">Study</span>
-          </div>
-
-          <div className="relative flex flex-col items-center justify-center -mt-8">
-            <div className="w-14 h-14 rounded-full flex items-center justify-center shadow-[0_8px_20px_rgba(0,229,204,0.3)] bg-gradient-to-r from-primary to-primary-container">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className="text-on-primary">
-                <line x1="12" y1="5" x2="12" y2="19"/>
-                <line x1="5" y1="12" x2="19" y2="12"/>
+      {/* Liquid Glass Floating Footer — Unified with Dashboard */}
+      <div className="fixed bottom-6 left-4 right-4 z-[90] pointer-events-none flex justify-center">
+        <div className="w-full max-w-[390px] px-4 pointer-events-auto h-[72px]">
+          <div className="w-full h-full bg-surface-container backdrop-blur-3xl border border-outline-variant border-t-white/[0.25] shadow-[inset_0_1px_1px_rgba(255,255,255,0.2),0_20px_40px_rgba(0,0,0,0.7)] rounded-[36px] grid grid-cols-5 items-end px-2 pt-3 pb-8 relative" aria-label="Bottom navigation" role="navigation">
+            
+            <motion.button 
+              onClick={onBack}
+              whileTap={{ scale: 0.9 }}
+              className="flex flex-col items-center gap-1"
+              aria-label="Navigate to Schedule"
+            >
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" strokeWidth="1.5" strokeLinecap="round">
+                <rect x="3" y="4" width="18" height="18" rx="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
               </svg>
+              <span className="text-[11px] tracking-wide font-semibold text-primary">Schedule</span>
+              <motion.div layoutId="navDot" className="absolute bottom-2 w-1 h-1 rounded-full bg-primary shadow-[0_0_8px_var(--color-primary)]" />
+            </motion.button>
+
+            <button 
+              className="flex flex-col items-center gap-1 opacity-40 pointer-events-none"
+              aria-label="Navigate to Study Material"
+            >
+              <User size={20} className="text-on-surface-variant" />
+              <span className="text-[11px] tracking-wide font-semibold text-on-surface-variant">Study</span>
+            </button>
+
+            <div className="flex flex-col items-center -mt-8">
+              <div className="w-14 h-14 rounded-full flex items-center justify-center shadow-[0_8px_20px_oklch(65%_0.15_160_/_0.3)] bg-gradient-to-r from-primary to-primary-container">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-on-primary">
+                  <line x1="12" y1="5" x2="12" y2="19" />
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                </svg>
+              </div>
             </div>
-          </div>
 
-          <div className="relative flex flex-col items-center justify-center min-w-[56px] h-full gap-1 opacity-40 pointer-events-none">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-              <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
-              <line x1="1" y1="10" x2="23" y2="10"/>
-            </svg>
-            <span className="text-[11px] tracking-wide font-semibold text-white/60">Payments</span>
-          </div>
+            <button 
+              className="flex flex-col items-center gap-1 opacity-40 pointer-events-none"
+              aria-label="Navigate to Payments"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F0EDE866" strokeWidth="1.5" strokeLinecap="round">
+                <rect x="2" y="5" width="20" height="14" rx="2"/>
+                <line x1="2" y1="10" x2="22" y2="10"/>
+              </svg>
+              <span className="text-[11px] tracking-wide font-semibold text-on-surface-variant">Wallet</span>
+            </button>
 
-          <div className="relative flex flex-col items-center justify-center min-w-[56px] h-full gap-1 opacity-40 pointer-events-none">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="1.5" strokeLinecap="round">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-              <circle cx="12" cy="7" r="4"/>
-            </svg>
-            <span className="text-[11px] tracking-wide font-semibold text-white/60">Profile</span>
+            <button 
+              className="flex flex-col items-center gap-1 opacity-40 pointer-events-none"
+              aria-label="Navigate to Profile"
+            >
+              <div className="w-5 h-5 rounded-full border-[1.5px] border-on-surface-variant flex items-center justify-center overflow-hidden bg-white/5">
+                <div className="w-3 h-3 rounded-full bg-on-surface-micro" />
+              </div>
+              <span className="text-[11px] tracking-wide font-semibold text-on-surface-variant">Profile</span>
+            </button>
           </div>
-
         </div>
       </div>
-    </div>
       <AnimatePresence>
         {toastMessage && (
           <motion.div

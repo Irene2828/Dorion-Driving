@@ -27,7 +27,7 @@ export default function SplashScreen({ onAnimationComplete }: SplashScreenProps)
           animate={{ opacity: 1 }}
           exit={{ opacity: 0, scale: 1.1 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="relative h-screen w-full flex flex-col items-center justify-center bg-[#080F0E] text-[#F0F4F3] overflow-hidden"
+          className="relative h-screen w-full flex flex-col items-center justify-center bg-[#080F0E] text-[#F0EDE8] overflow-hidden"
         >
           {/* The Liquid Void — Organic Background Blobs */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">

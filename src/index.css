@@ -5,10 +5,10 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Playfair Display", serif;
 
-  /* Perceptually Uniform OKLCH Palette */
-  --color-primary: oklch(85% 0.18 175);
-  --color-primary-container: oklch(80% 0.20 175);
-  --color-on-primary: oklch(20% 0.05 175);
+  /* Updated Accent Palette (Softer, Muted Cyan) */
+  --color-primary: oklch(75% 0.08 175);
+  --color-primary-container: oklch(70% 0.10 175);
+  --color-on-primary: oklch(20% 0.02 175);
   
   --color-surface: oklch(12% 0.01 175); /* The Void */
   --color-surface-container: oklch(18% 0.02 175 / 60%); /* Unified Card Base */
@@ -16,7 +16,7 @@
   --color-surface-container-high: oklch(22% 0.02 175 / 60%);
   --color-surface-container-highest: oklch(28% 0.03 175 / 60%);
   
-  --color-on-surface: oklch(95% 0 0);
+  --color-on-surface: #F0EDE8;
   --color-on-surface-variant: oklch(70% 0.05 175);
   --color-on-surface-micro: oklch(50% 0.05 175);
   

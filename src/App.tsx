@@ -22,12 +22,12 @@ export default function App() {
   };
 
   return (
-    <main className="relative overflow-hidden w-full h-screen text-[#F0F4F3] selection:bg-[#00E5CC]/30 bg-[#030712]">
+    <main className="relative overflow-hidden w-full h-screen text-on-surface selection:bg-primary/30 bg-surface">
       
       {/* Liquid Glass Background */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-[#00E5CC]/10 blur-[120px] rounded-full" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-blue-900/20 blur-[120px] rounded-full" />
+        <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-primary/10 blur-[120px] rounded-full" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-blue-900/10 blur-[120px] rounded-full" />
       </div>
 
       <AnimatePresence mode="wait">
@@ -77,11 +77,9 @@ export default function App() {
             className="absolute inset-0 overflow-auto z-50"
           >
             <SelectSession 
+              lessons={lessons}
               onConfirmBooking={(newLesson) => {
-                setLessons(prev => {
-                  const updated = [...prev, newLesson];
-                  return updated.sort((a, b) => Number(a.day) - Number(b.day));
-                });
+                setLessons(prev => [...prev, newLesson]);
                 setPendingLesson(newLesson);
                 setCurrentScreen('booking-confirmed');
               }}

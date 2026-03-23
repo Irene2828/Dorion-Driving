@@ -5,13 +5,15 @@ export interface Instructor {
 }
 
 export interface Lesson {
-  id: string;
+  id: string | number;
   title: string;
   instructor: string;
-  date: string;
+  month: string;
+  day: string;
   time: string;
-  duration: string;
+  accentColor: string;
+  location?: string;
+  duration?: string;
   status?: 'upcoming' | 'completed' | 'cancelled';
 }
-
-export type Screen = 'splash' | 'dashboard' | 'select-session' | 'booking-confirmed' | 'lesson-cancelled';
+export type Screen = 'splash' | 'login' | 'dashboard' | 'select-session' | 'booking-confirmed' | 'lesson-cancelled';

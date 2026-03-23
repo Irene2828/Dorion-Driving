@@ -19,28 +19,16 @@ export const INSTRUCTORS: Instructor[] = [
 ];
 
 export const UPCOMING_LESSONS: Lesson[] = [
-  {
-    id: 'l1',
-    title: 'Highway Merging',
-    instructor: 'Marcus Chen',
-    date: 'Oct 12',
-    time: '09:00 AM',
-    duration: '90 Minutes',
-  },
-  {
-    id: 'l2',
-    title: 'Night Driving',
-    instructor: 'Sarah Vance',
-    date: 'Oct 15',
-    time: '07:30 PM',
-    duration: '60 Minutes',
-  },
-  {
-    id: 'l3',
-    title: 'Mock Driving Test',
-    instructor: 'Alex Reed',
-    date: 'Oct 20',
-    time: '11:00 AM',
-    duration: '120 Minutes',
-  },
+  { id: 1, month: 'MAY', day: '25', title: 'Highway Merging', 
+    instructor: 'Marcus Chen', time: '09:00 AM', 
+    accentColor: '#00E5CC', location: 'South Shore Route' },
+  { id: 2, month: 'JUNE', day: '14', title: 'Night Driving', 
+    instructor: 'Marcus Chen', time: '07:30 PM', 
+    accentColor: '#00E5CC', location: 'Longueuil Center' },
+  { id: 3, month: 'JULY', day: '08', title: 'Mock Driving Test', 
+    instructor: 'Alex Reed', time: '11:00 AM', 
+    accentColor: '#00E5CC', location: 'Brossard Pickup' },
+  { id: 4, month: 'AUGUST', day: '26', title: 'City Parking', 
+    instructor: 'Sarah Vance', time: '02:00 PM', 
+    accentColor: '#00E5CC', location: 'Downtown Circuit' }, 
 ];

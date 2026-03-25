@@ -5,8 +5,6 @@ import SplashScreen from './screens/SplashScreen';
 import Dashboard from './screens/Dashboard';
 import Login from './screens/Login';
 import SelectSession from './screens/SelectSession';
-import BookingConfirmed from './screens/BookingConfirmed';
-import LessonCancelled from './screens/LessonCancelled';
 import { UPCOMING_LESSONS as INITIAL_LESSONS } from './constants';
 
 export default function App() {
@@ -22,12 +20,15 @@ export default function App() {
   };
 
   return (
-    <main className="relative overflow-hidden w-full h-screen text-on-surface selection:bg-primary/30 bg-surface pb-safe">
+    <main className="relative overflow-hidden w-full h-screen text-on-surface selection:bg-primary/30 bg-[#080F0E] pb-safe">
       
-      {/* Liquid Glass Background */}
-      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-primary/10 blur-[120px] rounded-full" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-blue-900/10 blur-[120px] rounded-full" />
+      {/* The Liquid Void — Organic Background Blobs (Global) */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        <div className="absolute inset-0 bg-[#080F0E]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_#080F0E_70%)] z-[1]" />
+        <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-[oklch(80%_0.12_80)]/[0.04] rounded-full blur-[120px]" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-[oklch(30%_0.08_60)]/[0.06] rounded-full blur-[120px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[oklch(80%_0.12_80)]/[0.025] rounded-full blur-[120px]" />
       </div>
 
       <AnimatePresence mode="wait">
@@ -60,12 +61,7 @@ export default function App() {
               onAddLesson={() => setCurrentScreen('select-session')} 
               onReschedule={() => setCurrentScreen('select-session')}
               onCancelLesson={(id) => {
-                const lessonToCancel = lessons.find(l => l.id === id);
-                if (lessonToCancel) {
-                  setPendingLesson(lessonToCancel);
-                  setLessons(prev => prev.filter(l => l.id !== id));
-                  setCurrentScreen('lesson-cancelled');
-                }
+                setLessons(prev => prev.filter(l => l.id !== id));
               }}
             />
           </motion.div>
@@ -79,38 +75,17 @@ export default function App() {
             <SelectSession 
               lessons={lessons}
               onConfirmBooking={(newLesson) => {
-                setLessons(prev => [...prev, newLesson]);
-                setPendingLesson(newLesson);
-                setCurrentScreen('booking-confirmed');
+                setLessons(prev => {
+                  // If it's a reschedule, we might want to replace. But for now, just add.
+                  return [...prev, newLesson];
+                });
+                setCurrentScreen('dashboard');
               }}
               onBack={() => setCurrentScreen('dashboard')}
             />
           </motion.div>
         )}
-        {currentScreen === 'booking-confirmed' && (
-          <motion.div
-            key="booking-confirmed"
-            {...iosTransition}
-            className="absolute inset-0 overflow-auto z-50"
-          >
-            <BookingConfirmed 
-              pendingLesson={pendingLesson}
-              onDone={() => setCurrentScreen('dashboard')} 
-            />
-          </motion.div>
-        )}
-        {currentScreen === 'lesson-cancelled' && (
-          <motion.div
-            key="lesson-cancelled"
-            {...iosTransition}
-            className="absolute inset-0 overflow-auto z-50"
-          >
-            <LessonCancelled 
-              pendingLesson={pendingLesson}
-              onDone={() => setCurrentScreen('dashboard')} 
-            />
-          </motion.div>
-        )}
+
       </AnimatePresence>
     </main>
   );

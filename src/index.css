@@ -5,11 +5,15 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Playfair Display", serif;
 
-  /* Teal Cyan & Yellow Brand Gradient System */
-  --color-primary: oklch(72% 0.14 198);
-  --color-secondary: oklch(85% 0.18 90); /* Brand Yellow */
-  --color-on-primary: oklch(20% 0.04 198);
+  /* Warm Gold Академическая роскошь */
+  --color-primary: oklch(80% 0.12 80);
+  --color-primary-container: oklch(40% 0.1 80);
+  --color-on-primary: oklch(15% 0.05 80);
+  --color-secondary: oklch(70% 0.1 75);
 
+  --color-error: oklch(65% 0.2 25);
+  --color-error-container: oklch(40% 0.15 25);
+  --color-on-error-container: oklch(95% 0.05 25);
 
   /* High-End Frosted Glass System (Neutral & Whitish) */
   --color-surface: oklch(10% 0 0); /* The Pure Dark Void */
@@ -22,11 +26,7 @@
   --color-on-surface-variant: oklch(90% 0.01 0 / 80%); /* Bright Silver (AA Pass) */
   --color-on-surface-micro: oklch(90% 0.01 0 / 60%);   /* Visible Silver (AA Pass for non-paragraph text) */
 
-  
   --color-outline-variant: oklch(100% 0 0 / 12%); /* The Silver Glass Rim */
-
-  --color-error-container: oklch(40% 0.15 25);
-  --color-on-error-container: oklch(95% 0.05 25);
 }
 
 @layer base {

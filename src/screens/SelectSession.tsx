@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ChevronLeft, Lock, Calendar as CalendarIcon, User } from 'lucide-react';
+import { ChevronLeft, Calendar as CalendarIcon, User } from 'lucide-react';
 import { INSTRUCTORS } from '../constants';
 import { Lesson } from '../types';
+import BottomNav from '../components/BottomNav';
 
 interface SelectSessionProps {
   lessons: Lesson[];
@@ -30,6 +31,9 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
   const [selectedInstructorId, setSelectedInstructor] = useState<string | number | null>(null);
   const [selectedDate, setSelectedDate] = useState<any>(null);
   const [selectedTime, setSelectedTime] = useState<any>(null);
+  
+  const [bookingConfirmed, setBookingConfirmed] = useState(false);
+  const [confirmedLesson, setConfirmedLesson] = useState<any>(null);
 
   const [shakeField, setShakeField] = useState<string | null>(null);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
@@ -50,8 +54,6 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
 
   const onConfirm = () => {
     const instructor = INSTRUCTORS.find(i => i.id === selectedInstructorId);
-    
-    // Parse the start time (e.g., "14:00" from "14:00 — 15:30")
     const timeStr = selectedTime.time.split(' — ')[0];
     const hourNum = parseInt(timeStr.split(':')[0], 10);
     const minSuffix = timeStr.split(':')[1];
@@ -59,16 +61,7 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
     const hour12 = hourNum % 12 || 12;
     const finalFormattedTime = `${hour12 < 10 ? '0'+hour12 : hour12}:${minSuffix} ${ampm}`;
 
-    // Compute next session number from existing lessons
-    const sessionNumbers = lessons
-      .map(l => {
-        const match = l.title.match(/Session (\d+)/);
-        return match ? parseInt(match[1], 10) : 0;
-      })
-      .filter(n => n > 0);
-    const nextSessionNum = sessionNumbers.length > 0 ? Math.max(...sessionNumbers) + 1 : 20;
-
-    onConfirmBooking({
+    const builtLesson = {
       id: Date.now(),
       month: selectedDate.month,
       day: selectedDate.date,
@@ -77,30 +70,38 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
       time: finalFormattedTime,
       accentColor: 'var(--color-primary)',
       location: 'Main Route'
-    });
+    };
+
+    setConfirmedLesson(builtLesson);
+    setBookingConfirmed(true);
   };
 
   return (
-    <motion.div 
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="min-h-screen pt-28 pb-[calc(72px+48px+env(safe-area-inset-bottom,0px))] w-full max-w-[600px] mx-auto px-4 sm:px-6 relative"
-    >
+    <div className="relative min-h-screen pt-28 pb-48 w-full max-w-[600px] mx-auto px-4 sm:px-6">
       <header className="fixed top-0 inset-x-0 z-50 px-4 sm:px-6 pt-5 pb-4 flex justify-center bg-white/[0.04] backdrop-blur-3xl border-b border-white/[0.08]">
         <div className="w-full max-w-[600px] flex justify-between items-center relative">
-          {/* Left: Back Button styled like avatar */}
           <button onClick={onBack} className="relative w-12 h-12 rounded-full overflow-hidden border border-white/10 shrink-0 flex items-center justify-center bg-white/5 text-[var(--color-on-surface-micro)] hover:text-[var(--color-primary)] transition-colors">
             <ChevronLeft size={20} className="mr-0.5" />
           </button>
 
-          {/* Center: Wordmark (Centered) */}
-          <h1 className="absolute left-1/2 -translate-x-1/2 text-[18px] font-bold tracking-[0.2em] uppercase leading-none font-sans text-primary">
-            DORION
-          </h1>
+          {/* Centered: Icon + Wordmark lockup */}
+          <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-3">
+            {/* Glass icon tile — identical to splash */}
+            <div className="relative w-9 h-9 rounded-[12px] bg-white/[0.03] border border-white/[0.06] backdrop-blur-2xl flex items-center justify-center overflow-hidden">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(232,213,163,0.9)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <circle cx="12" cy="12" r="3" />
+                <line x1="12" y1="9" x2="12" y2="5" />
+                <line x1="9.4" y1="13.5" x2="5.8" y2="15.5" />
+                <line x1="14.6" y1="13.5" x2="18.2" y2="15.5" />
+              </svg>
+            </div>
+            {/* Wordmark */}
+            <h1 className="font-serif text-[18px] tracking-[0.22em] font-bold text-on-surface leading-none">
+              DORION
+            </h1>
+          </div>
 
-
-          {/* Right: Chat */}
           <button className="relative w-12 h-12 flex items-center justify-center active:opacity-60 transition-opacity text-on-surface-variant">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
@@ -110,13 +111,12 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
         </div>
       </header>
 
-      {/* Conversational Booking Header */}
-        <motion.div 
+      <motion.div 
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         className="p-4 sm:p-6 relative overflow-hidden rounded-[32px] bg-surface-container backdrop-blur-2xl border border-outline-variant shadow-[0_12px_40px_rgba(0,0,0,0.3)] mb-12"
       >
-        <div className="absolute -top-4 -right-4 w-32 h-32 rounded-full pointer-events-none" style={{ background: 'var(--color-primary-container) / 10%', filter: 'blur(20px)' }} />
+        <div className="absolute -top-4 -right-4 w-32 h-32 rounded-full pointer-events-none" style={{ background: 'oklch(40% 0.1 80 / 10%)', filter: 'blur(20px)' }} />
         <div className="relative z-10">
           <h2 className="text-[18px] font-semibold text-on-surface leading-tight mb-1.5 font-sans">
             Let's get you on the road.
@@ -129,8 +129,8 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
 
       <section className="mb-12">
         <div className="flex justify-between items-end mb-4">
-          <h3 className="text-[10px] uppercase tracking-[0.2em] font-bold text-[var(--color-on-surface-micro)] font-sans">SELECT DATE</h3>
-          <span className="text-[#F0EDE8]/60 text-xs font-medium uppercase tracking-widest font-sans">May 2026</span>
+          <h3 className="text-[10px] uppercase tracking-[0.2em] font-medium text-[var(--color-on-surface-micro)] font-sans">SELECT DATE</h3>
+          <span className="text-on-surface-micro text-[10px] font-medium uppercase tracking-[0.2em] font-sans">May 2026</span>
         </div>
         <motion.div 
           animate={shakeField === 'date' ? shakeAnimation : {}}
@@ -151,9 +151,8 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
                     'bg-white/[0.01] border border-white/[0.05] rounded-[16px] opacity-30 cursor-not-allowed'}`}
               >
                 <div className="flex flex-col items-center justify-center relative z-10">
-                  <span className={`text-[8px] uppercase tracking-[0.1em] font-bold mb-1 ${isActive ? 'text-primary' : 'text-on-surface-micro'}`}>{d.month}</span>
-                  <span className={`text-[10px] uppercase tracking-[0.2em] font-bold relative z-10 mb-1 pl-1 font-sans ${isActive ? 'text-primary' : 'text-on-surface-variant'}`}>{d.day}</span>
-                  <span className={`text-[26px] font-bold relative z-10 pl-1 font-serif ${isActive ? 'text-on-surface' : 'text-white'}`}>{d.date}</span>
+                  <span className={`text-[10px] uppercase tracking-[0.2em] font-bold mb-1 ${isActive ? 'text-primary' : 'text-on-surface-micro'}`}>{d.month}</span>
+                  <span className={`text-[26px] font-bold relative z-10 font-serif ${isActive ? 'text-on-surface' : 'text-white'}`}>{d.date}</span>
                 </div>
               </motion.div>
             );
@@ -163,7 +162,7 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
 
       <div className="flex flex-col gap-8">
         <section>
-          <h3 className="text-[10px] uppercase tracking-[0.2em] font-bold text-[var(--color-on-surface-micro)] mb-4">AVAILABLE TIMES</h3>
+          <h3 className="text-[10px] uppercase tracking-[0.2em] font-medium text-[var(--color-on-surface-micro)] mb-4">AVAILABLE TIMES</h3>
           <motion.div 
             animate={shakeField === 'time' ? shakeAnimation : {}}
             className="space-y-3"
@@ -183,8 +182,8 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
                     <span className="text-[18px] font-serif font-normal text-white tracking-wide">
                       {slot.time}
                     </span>
-                    <p className="text-[13px] font-medium font-sans text-white/50 mt-1 capitalize tracking-wide">
-                      {slot.period.toLowerCase()}
+                    <p className="text-[13px] font-medium font-sans text-white/50 mt-1 uppercase tracking-wide">
+                      90 min
                     </p>
                   </div>
                   {isSelected && (
@@ -199,7 +198,7 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
         </section>
 
         <section>
-          <h3 className="text-[10px] uppercase tracking-[0.2em] font-bold text-[var(--color-on-surface-micro)] mb-4">INSTRUCTOR</h3>
+          <h3 className="text-[10px] uppercase tracking-[0.2em] font-medium text-[var(--color-on-surface-micro)] mb-4">INSTRUCTOR</h3>
           <motion.div 
             animate={shakeField === 'instructor' ? shakeAnimation : {}}
             className="grid grid-cols-3 gap-3"
@@ -213,23 +212,18 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
                 onClick={() => setSelectedInstructor(instructor.id)}
                 className={`p-4 sm:p-6 flex flex-col items-center text-center transition-all relative overflow-hidden hover:bg-white/5 active:scale-95 ${selectedInstructorId === instructor.id ? 'bg-white/[0.12] border border-primary/60 rounded-[16px]' : 'bg-surface-container border border-outline-variant rounded-[16px]'}`}
               >
-                <div className={`relative z-10 w-11 h-11 rounded-full p-[2px] mb-3 ml-1 border ${selectedInstructorId === instructor.id ? 'border-primary' : 'border-transparent'}`}>
-                  {/* Premium Monogram Avatar Replacement */}
+                <div className={`relative z-10 w-11 h-11 rounded-full p-[2px] mb-3 border ${selectedInstructorId === instructor.id ? 'border-primary' : 'border-transparent'}`}>
                   <div className="w-full h-full rounded-full bg-gradient-to-br from-white/[0.1] to-transparent border border-white/[0.05] flex items-center justify-center shadow-[inset_0_1px_4px_rgba(255,255,255,0.1)]">
                     <span className="font-serif text-[14px] text-white tracking-widest font-bold">
                       {instructor.name.split(' ').map(n => n[0]).join('')}
                     </span>
                   </div>
                 </div>
-                <h4 className={`relative z-10 text-[14px] leading-tight tracking-wide font-semibold pl-1 font-sans mt-1.5 ${selectedInstructorId === instructor.id ? 'text-primary' : 'text-on-surface-variant'}`}>
+                <h4 className={`relative z-10 text-[14px] leading-tight tracking-wide font-semibold font-sans mt-1.5 ${selectedInstructorId === instructor.id ? 'text-primary' : 'text-on-surface-variant'}`}>
                   {instructor.name.split(' ').map((part, i) => (
                     <span key={i} className="block">{part}</span>
                   ))}
                 </h4>
-                
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-50 mt-1">
-                  <polyline points="6 9 12 15 18 9" />
-                </svg>
               </motion.button>
             ))}
           </motion.div>
@@ -237,18 +231,15 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
       </div>
 
       <div className="mt-12">
-        <h3 className="text-[10px] uppercase tracking-[0.2em] font-bold text-[var(--color-on-surface-micro)] mb-4">CONFIRM SELECTION</h3>
+        <h3 className="text-[10px] uppercase tracking-[0.2em] font-medium text-[var(--color-on-surface-micro)] mb-4">CONFIRM SELECTION</h3>
         <motion.div 
           initial={{ y: 40, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.6 }}
           className="flex flex-col items-center"
         >
-          {/* Unified Premium Preview Card */}
           <motion.div layoutId="hero-card" className="w-full bg-surface-container backdrop-blur-2xl border border-outline-variant rounded-[32px] px-4 sm:px-6 py-5 shadow-[0_12px_40px_rgba(0,0,0,0.3)]">
             <div className="flex items-center gap-4">
-              
-              {/* The Global Standard Glass Calendar Badge */}
               <div className="flex flex-col items-center justify-center min-w-[56px] h-[64px] rounded-[18px] bg-white/[0.04] border border-white/[0.08] shadow-[inset_0_1px_4px_rgba(255,255,255,0.05)] backdrop-blur-md shrink-0">
                 <span className="text-[10px] uppercase font-bold text-primary tracking-[0.2em] mb-0.5">
                   {selectedDate?.month || 'MAY'}
@@ -258,16 +249,11 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
                 </span>
               </div>
 
-              {/* The Text Stack: Hero Hierarchy */}
               <div className="flex-1 min-w-0 flex flex-col justify-center gap-1">
                 <p className="font-sans text-[9px] text-[var(--color-on-surface-micro)] tracking-[0.2em] uppercase">Scheduled Lesson</p>
-                
-                {/* Hero Title: Auto-calculates based on current progress */}
                 <h3 className="text-[18px] font-bold text-white tracking-tight leading-tight truncate">
                   Session {nextSessionNum}
                 </h3>
-                
-                {/* Supporting Instructor Detail */}
                 <div className="flex items-center gap-1.5">
                   <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-on-surface-variant">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
@@ -277,11 +263,8 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
                     {INSTRUCTORS.find(i => i.id === selectedInstructorId)?.name || 'Marcus Chen'}
                   </span>
                 </div>
-
-
               </div>
 
-              {/* The Time: Perfectly Centered Right-Aligned */}
               <div className="flex flex-col items-end justify-center h-full shrink-0 pl-2">
                 <div className="flex items-center gap-1.5 text-white">
                   <span className="font-serif text-[20px] tracking-wide">
@@ -317,12 +300,10 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
                   setTimeout(() => { setShakeField(null); setToastMessage(null); }, 3000);
                   return;
                 }
-                
                 onConfirm();
               }}
               className="relative w-full h-[56px] rounded-full bg-gradient-to-r from-primary to-secondary text-on-primary text-[16px] font-semibold tracking-wide shadow-[0_20px_40px_rgba(0,0,0,0.7)] transition-all flex items-center justify-center overflow-hidden"
             >
-              {/* Haptic Ripple Glow */}
               <motion.div 
                 className="absolute inset-0 bg-primary/20 rounded-full blur-xl"
                 initial={{ scale: 0, opacity: 0 }}
@@ -336,80 +317,150 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
             </p>
           </div>
         </motion.div>
-    </div>
-
-      {/* Liquid Glass Floating Footer — Unified with Dashboard */}
-      <div className="fixed bottom-6 inset-x-0 z-[90] pointer-events-none">
-        <div className="w-full max-w-[600px] mx-auto px-4 sm:px-6 pointer-events-auto h-[72px] overflow-visible">
-          <div className="w-full h-full bg-surface-container backdrop-blur-3xl border border-outline-variant border-t-white/[0.25] shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_8px_20px_rgba(0,0,0,0.6)] rounded-[36px] grid grid-cols-5 items-end px-2 pt-3 pb-8 relative overflow-visible" aria-label="Bottom navigation" role="navigation">
-            
-            <motion.button 
-              onClick={onBack}
-              whileTap={{ scale: 0.9 }}
-              className="flex flex-col items-center gap-1"
-              aria-label="Navigate to Schedule"
-            >
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" strokeWidth="1.5" strokeLinecap="round">
-                <rect x="3" y="4" width="18" height="18" rx="2"/>
-                <line x1="16" y1="2" x2="16" y2="6"/>
-                <line x1="8" y1="2" x2="8" y2="6"/>
-                <line x1="3" y1="10" x2="21" y2="10"/>
-              </svg>
-              <span className="text-[11px] tracking-wide font-semibold text-primary">Schedule</span>
-              <motion.div layoutId="navDot" className="absolute bottom-2 w-1 h-1 rounded-full bg-primary shadow-[0_0_8px_var(--color-primary)]" />
-            </motion.button>
-
-            <button 
-              className="flex flex-col items-center gap-1 opacity-40 pointer-events-none"
-              aria-label="Navigate to Study Material"
-            >
-              <User size={20} className="text-on-surface-variant" />
-              <span className="text-[11px] tracking-wide font-semibold text-on-surface-variant">Study</span>
-            </button>
-
-            {/* Centered FAB Overlay */}
-            <div className="absolute left-1/2 -translate-x-1/2 -top-7 z-20">
-              <div className="w-14 h-14 rounded-full flex items-center justify-center shadow-[0_8px_24px_rgba(0,215,255,0.3)] bg-gradient-to-r from-primary to-secondary">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-on-primary">
-                  <line x1="12" y1="5" x2="12" y2="19" />
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                </svg>
-              </div>
-            </div>
-
-            <div className="col-start-3" /> {/* Spacer for grid layout */}
-
-
-            <button 
-              className="flex flex-col items-center gap-1 opacity-40 pointer-events-none"
-              aria-label="Navigate to Payments"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F0EDE866" strokeWidth="1.5" strokeLinecap="round">
-                <rect x="2" y="5" width="20" height="14" rx="2"/>
-                <line x1="2" y1="10" x2="22" y2="10"/>
-              </svg>
-              <span className="text-[11px] tracking-wide font-semibold text-on-surface-variant">Bills</span>
-            </button>
-
-            <button 
-              className="flex flex-col items-center gap-1 opacity-40 pointer-events-none"
-              aria-label="Navigate to Profile"
-            >
-              <div className="w-5 h-5 rounded-full border-[1.5px] border-on-surface-variant flex items-center justify-center overflow-hidden bg-white/5">
-                <div className="w-3 h-3 rounded-full bg-on-surface-micro" />
-              </div>
-              <span className="text-[11px] tracking-wide font-semibold text-on-surface-variant">Profile</span>
-            </button>
-          </div>
-        </div>
       </div>
+
+      <BottomNav 
+        activeTab="schedule" 
+        onTabChange={(tab) => tab === 'schedule' && onBack()} 
+        disabledTabs={['study', 'payments', 'profile']}
+      />
+
+      <AnimatePresence>
+        {bookingConfirmed && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center px-4 sm:px-6"
+          >
+            <div
+              className="absolute inset-0 bg-[#080F0E]/80 backdrop-blur-md"
+              onClick={() => { setBookingConfirmed(false); onConfirmBooking(confirmedLesson); }}
+            />
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              className="relative w-full max-w-sm z-10"
+            >
+              <div className="relative w-full rounded-[32px] p-6 sm:p-8 bg-surface-container backdrop-blur-2xl border border-outline-variant shadow-[0_24px_60px_rgba(0,0,0,0.6)] text-center overflow-hidden flex flex-col items-center">
+                {/* Liquid Bubbles Celebration */}
+                {[...Array(6)].map((_, i) => (
+                  <motion.div
+                    key={`bubble-${i}`}
+                    className="absolute rounded-full bg-primary/10 blur-xl pointer-events-none"
+                    style={{
+                      width: 10 + i * 6,
+                      height: 10 + i * 6,
+                      left: `${15 + i * 14}%`,
+                      bottom: '10%',
+                    }}
+                    animate={{ y: [-20, -120], opacity: [0, 0.3, 0] }}
+                    transition={{
+                      duration: 3 + i * 0.4,
+                      delay: 0.8 + i * 0.3,
+                      repeat: Infinity,
+                      repeatDelay: 1 + i * 0.5,
+                      ease: 'easeOut',
+                    }}
+                  />
+                ))}
+
+                <div className="relative w-16 h-16 mx-auto mb-6 flex items-center justify-center z-10">
+                  <motion.div 
+                    className="absolute inset-0 rounded-full border border-primary/30 bg-primary/10"
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1.5, opacity: [0, 0.4, 0] }}
+                    transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+                  />
+                  <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center border border-white/5 relative z-10">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
+                      <motion.path 
+                        d="M20 6L9 17l-5-5"
+                        initial={{ pathLength: 0, opacity: 0 }}
+                        animate={{ pathLength: 1, opacity: 1 }}
+                        transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+                      />
+                    </svg>
+                  </div>
+                </div>
+
+                <h1 className="text-[28px] font-bold text-on-surface mb-2 font-serif">
+                  You're <span className="text-primary">all set</span>, Julian.
+                </h1>
+                <p className="text-[14px] text-white/70 mb-2 font-sans">
+                  We've locked in your lesson and an email is on the way.
+                </p>
+
+                {/* The Tightened Receipt Card */}
+                <motion.div 
+                  layoutId="hero-card"
+                  className="w-full bg-surface-container border border-outline-variant rounded-[24px] p-5 mt-4 mb-6 flex flex-col gap-3 text-left relative z-10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_8px_20px_rgba(0,0,0,0.6)]"
+                >
+                  <div className="flex items-center gap-4 border-b border-white/[0.08] pb-3 mb-1">
+                    <div className="flex flex-col items-center justify-center min-w-[56px] h-[64px] rounded-[18px] bg-white/[0.04] border border-white/[0.08] shadow-[inset_0_1px_4px_rgba(255,255,255,0.05)] backdrop-blur-md shrink-0">
+                      <span className="text-[10px] uppercase font-bold text-primary tracking-[0.2em] mb-0.5">
+                        {confirmedLesson?.month || 'MAY'}
+                      </span>
+                      <span className="text-[22px] font-serif text-on-surface leading-none">
+                        {confirmedLesson?.day || '27'}
+                      </span>
+                    </div>
+
+                    <div className="flex flex-col justify-center gap-1 min-w-0">
+                      <p className="font-sans text-[9px] text-on-surface-variant tracking-[0.2em] uppercase">Scheduled Lesson</p>
+                      <h3 className="text-[18px] font-bold text-white tracking-tight leading-tight truncate">
+                        {confirmedLesson?.title || 'Session 20'}
+                      </h3>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between px-1">
+                    <div className="flex items-center gap-2 text-on-surface-variant">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                      </svg>
+                      <span className="font-sans text-[13px] font-medium tracking-wide truncate">
+                        {confirmedLesson?.instructor || 'Sarah Vance'}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2 text-on-surface">
+                      <span className="font-serif text-[18px] tracking-wide">
+                        {confirmedLesson?.time?.split(' ')[0] || '09:00'}
+                      </span>
+                      <span className="px-1.5 py-[2px] rounded-md bg-white/[0.08] border border-outline-variant font-sans text-[9px] font-bold tracking-[0.15em] text-primary uppercase">
+                        {confirmedLesson?.time?.split(' ')[1] || 'AM'}
+                      </span>
+                    </div>
+                  </div>
+                </motion.div>
+
+                <div className="flex flex-col w-full relative z-10 pt-2">
+                  <motion.button 
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => onConfirmBooking(confirmedLesson)}
+                    className="w-full h-[56px] rounded-full bg-gradient-to-r from-primary to-secondary text-on-primary text-[16px] font-semibold tracking-wide shadow-[0_20px_40px_rgba(0,0,0,0.7)] flex items-center justify-center focus-visible:outline-none"
+                  >
+                    Back to Dashboard
+                  </motion.button>
+                  <p className="font-sans text-[10px] text-white/40 font-medium tracking-wide text-center mt-3">
+                    A confirmation email is on its way.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <AnimatePresence>
         {toastMessage && (
           <motion.div
             initial={{ opacity: 0, y: 50, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.9 }}
-            className="fixed bottom-24 left-1/2 -translate-x-1/2 z-[100] px-6 py-3 rounded-full bg-white/[0.1] backdrop-blur-3xl border border-primary/30 shadow-[0_8px_32px_oklch(85%_0.18_205_/_20%)]"
+            className="fixed bottom-24 left-1/2 -translate-x-1/2 z-[100] px-6 py-3 rounded-full bg-white/[0.1] backdrop-blur-3xl border border-primary/30 shadow-[0_8px_32px_oklch(80%_0.12_80_/_20%)]"
           >
             <p className="text-[13px] font-medium text-white tracking-wide whitespace-nowrap">
               {toastMessage}
@@ -417,6 +468,6 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.div>
+    </div>
   );
 }

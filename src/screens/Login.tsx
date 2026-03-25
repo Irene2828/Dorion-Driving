@@ -20,30 +20,52 @@ export default function Login({ onLogin }: { onLogin: () => void }) {
   }, [code, onLogin, isAuthenticating]);
 
   return (
-    <div className="bg-surface text-on-surface min-h-screen relative overflow-hidden flex flex-col items-center justify-center font-sans">
-      
-      {/* Liquid Glass Background Blobs */}
-      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-primary/10 blur-[120px] rounded-full" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-blue-900/20 blur-[120px] rounded-full" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/5 rounded-full blur-[100px]" />
-      </div>
+    <div className="text-on-surface min-h-screen relative overflow-hidden flex flex-col items-center justify-center font-sans">
 
       <div className="relative z-10 flex flex-col items-center w-full">
-        {/* Header Section */}
-        <motion.div 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center"
-        >
-          <h1 className="text-[32px] font-bold tracking-[0.22em] uppercase text-on-surface mb-2 font-serif">
-            DORION
-          </h1>
-          <p className="text-[14px] font-sans font-medium tracking-[0.1em] text-on-surface-variant mt-2 uppercase">
-            Premium Driving Academy
-          </p>
-        </motion.div>
+        {/* Header Section — Unified with Splash Lock-up */}
+        <div className="flex flex-col items-center justify-center gap-6">
+          {/* Visual Glass Icon */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            className="relative w-20 h-20 rounded-[28px] bg-white/[0.01] border border-white/[0.06] backdrop-blur-2xl shadow-[0_16px_40px_rgba(0,0,0,0.3)] overflow-hidden flex items-center justify-center"
+          >
+            {/* The Slow Caustics Light Sweep */}
+            <motion.div 
+              initial={{ y: '-150%', skewY: -10 }}
+              animate={{ y: '150%' }}
+              transition={{ duration: 3.5, repeat: Infinity, ease: "linear", delay: 1 }}
+              className="absolute inset-x-0 h-[80%] bg-gradient-to-b from-transparent via-primary/20 via-secondary/20 to-transparent z-[0]"
+            />
+            
+            {/* Steering Wheel Icon */}
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="rgba(232,213,163,0.9)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="relative z-10">
+              <circle cx="12" cy="12" r="10" />
+              <circle cx="12" cy="12" r="3" />
+              <path d="M12 2a10 10 0 0 1 8.5 15" strokeOpacity="0" />
+              <line x1="12" y1="9" x2="12" y2="5" />
+              <line x1="9.4" y1="13.5" x2="5.8" y2="15.5" />
+              <line x1="14.6" y1="13.5" x2="18.2" y2="15.5" />
+            </svg>
+          </motion.div>
+
+          {/* Wordmark & Subtitle */}
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 1 }}
+            className="text-center"
+          >
+            <h1 className="text-[24px] font-bold tracking-[0.22em] uppercase text-white font-serif">
+              DORION
+            </h1>
+            <p className="text-[10px] font-sans font-medium tracking-[0.3em] text-[var(--color-on-surface-variant)] uppercase mt-2.5">
+              Premium Driving Academy
+            </p>
+          </motion.div>
+        </div>
         
         {/* Instruction Microcopy */}
         <motion.div 

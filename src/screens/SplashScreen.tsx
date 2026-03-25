@@ -32,9 +32,9 @@ export default function SplashScreen({ onAnimationComplete }: SplashScreenProps)
           {/* The Liquid Void — Organic Background Blobs */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_#080F0E_70%)]" />
-            <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-[var(--color-primary)]/[0.05] rounded-full blur-[120px]" />
-            <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-blue-900/[0.08] rounded-full blur-[120px]" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[var(--color-primary)]/[0.03] rounded-full blur-[120px]" />
+            <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-[oklch(80%_0.12_80)]/[0.04] rounded-full blur-[120px]" />
+            <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-[oklch(30%_0.08_60)]/[0.06] rounded-full blur-[120px]" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[oklch(80%_0.12_80)]/[0.025] rounded-full blur-[120px]" />
           </div>
 
           {/* Central Content Stack */}
@@ -56,7 +56,7 @@ export default function SplashScreen({ onAnimationComplete }: SplashScreenProps)
               />
               
               {/* Steering Wheel Icon — Pure Geometric Strokes */}
-              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="relative z-10">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="rgba(232,213,163,0.9)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="relative z-10">
                 <circle cx="12" cy="12" r="10" />
                 <circle cx="12" cy="12" r="3" />
                 <path d="M12 2a10 10 0 0 1 8.5 15" strokeOpacity="0" />

@@ -32,9 +32,9 @@ export default function SplashScreen({ onAnimationComplete }: SplashScreenProps)
           {/* The Liquid Void — Organic Background Blobs */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_#080F0E_70%)]" />
-            <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-[oklch(80%_0.12_80)]/[0.04] rounded-full blur-[120px]" />
-            <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-[oklch(30%_0.08_60)]/[0.06] rounded-full blur-[120px]" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[oklch(80%_0.12_80)]/[0.025] rounded-full blur-[120px]" />
+            <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-[oklch(80%_0.12_80)]/[0.09] rounded-full blur-[120px]" />
+            <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-[oklch(30%_0.08_60)]/[0.08] rounded-full blur-[120px]" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[oklch(80%_0.12_80)]/[0.08] rounded-full blur-[120px]" />
           </div>
 
           {/* Central Content Stack */}
@@ -82,7 +82,7 @@ export default function SplashScreen({ onAnimationComplete }: SplashScreenProps)
                 initial={{ opacity: 0, y: 5 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 2.5, duration: 1 }}
-                className="text-[10px] font-sans font-medium tracking-[0.3em] text-[var(--color-on-surface-variant)] uppercase mt-2.5"
+                className="text-[10px] font-sans font-medium tracking-[0.3em] text-on-surface uppercase mt-2.5"
               >
                 Premium Driving Academy
               </motion.p>

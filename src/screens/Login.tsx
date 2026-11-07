@@ -61,7 +61,7 @@ export default function Login({ onLogin }: { onLogin: () => void }) {
             <h1 className="text-[24px] font-bold tracking-[0.22em] uppercase text-white font-serif">
               DORION
             </h1>
-            <p className="text-[10px] font-sans font-medium tracking-[0.3em] text-[var(--color-on-surface-variant)] uppercase mt-2.5">
+            <p className="text-[10px] font-sans font-medium tracking-[0.3em] text-on-surface uppercase mt-2.5">
               Premium Driving Academy
             </p>
           </motion.div>

@@ -16,7 +16,7 @@
   --color-on-error-container: oklch(95% 0.05 25);
 
   /* High-End Frosted Glass System (Neutral & Whitish) */
-  --color-surface: oklch(10% 0 0); /* The Pure Dark Void */
+  --color-surface: #121316; /* Matte black */
   --color-surface-container: oklch(100% 0 0 / 10%); /* 10% White Frosted */
   --color-surface-container-low: oklch(100% 0 0 / 5%);
   --color-surface-container-high: oklch(100% 0 0 / 15%);

@@ -27,11 +27,11 @@ export default function SplashScreen({ onAnimationComplete }: SplashScreenProps)
           animate={{ opacity: 1 }}
           exit={{ opacity: 0, scale: 1.1 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="relative h-screen w-full flex flex-col items-center justify-center bg-[#080F0E] text-[#F0EDE8] overflow-hidden"
+          className="relative h-screen w-full flex flex-col items-center justify-center bg-[#121316] text-[#F0EDE8] overflow-hidden"
         >
           {/* The Liquid Void — Organic Background Blobs */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_#080F0E_70%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_#121316_70%)]" />
             <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-[oklch(80%_0.12_80)]/[0.09] rounded-full blur-[120px]" />
             <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-[oklch(30%_0.08_60)]/[0.08] rounded-full blur-[120px]" />
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[oklch(80%_0.12_80)]/[0.08] rounded-full blur-[120px]" />

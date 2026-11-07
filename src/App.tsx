@@ -20,12 +20,12 @@ export default function App() {
   };
 
   return (
-    <main className="relative overflow-hidden w-full h-screen text-on-surface selection:bg-primary/30 bg-[#080F0E] pb-safe">
+    <main className="relative overflow-hidden w-full h-screen text-on-surface selection:bg-primary/30 bg-[#121316] pb-safe">
       
       {/* The Liquid Void — Organic Background Blobs (Global) */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
-        <div className="absolute inset-0 bg-[#080F0E]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_#080F0E_70%)] z-[1]" />
+        <div className="absolute inset-0 bg-[#121316]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_#121316_70%)] z-[1]" />
         <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-[oklch(80%_0.12_80)]/[0.09] rounded-full blur-[120px]" />
         <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-[oklch(30%_0.08_60)]/[0.08] rounded-full blur-[120px]" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[oklch(80%_0.12_80)]/[0.08] rounded-full blur-[120px]" />

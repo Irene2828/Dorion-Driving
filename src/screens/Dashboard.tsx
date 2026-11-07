@@ -99,7 +99,7 @@ export default function Dashboard({ lessons, onAddLesson, onReschedule, onCancel
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
               </svg>
-              <div className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-primary rounded-full border border-[rgba(8,15,14,0.5)] shadow-[0_0_0_1px_rgba(8,15,14,0.5)]" />
+              <div className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-primary rounded-full border border-[rgba(18,19,22,0.5)] shadow-[0_0_0_1px_rgba(18,19,22,0.5)]" />
             </div>
             <span className="text-[13px] font-sans tracking-wide font-medium">Chat</span>
           </button>

@@ -6,7 +6,7 @@ description: DORION Design System & UI Rules - Liquid Glass aesthetic reference
 **CRITICAL:** Strictly adhere to these rules for all UI/UX generation. Never default to standard Tailwind components.
 
 ## 1. Aesthetic: "Liquid Glass"
-* **Backgrounds:** Dark void `#080F0E`. No solid grays or blacks for cards.
+* **Backgrounds:** Matte black `#121316`. No solid grays or blacks for cards.
 * **Cards & Modals:** Liquid Glass formula: `bg-white/[0.04] backdrop-blur-2xl border border-white/[0.12]`.
 * **Shadows:** Deep, spatial: `shadow-[0_16px_40px_rgba(0,0,0,0.5)]` for floating elements.
 * **Geometry:** Heavy Apple-style squircles. Master containers `rounded-[32px]`. Inner badges `rounded-[16px]`.

@@ -80,7 +80,7 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
     <div className="relative min-h-screen pt-28 pb-48 w-full max-w-[600px] mx-auto px-4 sm:px-6">
       <header className="fixed top-0 inset-x-0 z-50 px-4 sm:px-6 pt-5 pb-4 flex justify-center bg-white/[0.04] backdrop-blur-3xl border-b border-white/[0.08]">
         <div className="w-full max-w-[600px] flex justify-between items-center relative">
-          <button onClick={onBack} className="relative w-12 h-12 rounded-full overflow-hidden border border-white/10 shrink-0 flex items-center justify-center bg-white/5 text-[var(--color-on-surface-micro)] hover:text-[var(--color-primary)] transition-colors">
+          <button onClick={onBack} className="relative w-12 h-12 rounded-full overflow-hidden border border-white/10 shrink-0 flex items-center justify-center bg-white/5 text-on-surface hover:text-[var(--color-primary)] transition-colors">
             <ChevronLeft size={20} className="mr-0.5" />
           </button>
 
@@ -129,8 +129,8 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
 
       <section className="mb-12">
         <div className="flex justify-between items-end mb-4">
-          <h3 className="text-[10px] uppercase tracking-[0.2em] font-medium text-[var(--color-on-surface-micro)] font-sans">SELECT DATE</h3>
-          <span className="text-on-surface-micro text-[10px] font-medium uppercase tracking-[0.2em] font-sans">May 2026</span>
+          <h3 className="text-[10px] uppercase tracking-[0.2em] font-medium text-on-surface font-sans">SELECT DATE</h3>
+          <span className="text-on-surface text-[10px] font-medium uppercase tracking-[0.2em] font-sans">May 2026</span>
         </div>
         <motion.div 
           animate={shakeField === 'date' ? shakeAnimation : {}}
@@ -148,11 +148,11 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
                 className={`flex-shrink-0 w-20 h-28 flex flex-col items-center justify-center gap-1 cursor-pointer transition-all relative overflow-hidden active:scale-95 group 
                   ${isActive ? 'bg-white/[0.12] border border-primary/60 rounded-[16px]' : 
                     d.available ? 'bg-surface-container border border-outline-variant rounded-[16px]' : 
-                    'bg-white/[0.01] border border-white/[0.05] rounded-[16px] opacity-30 cursor-not-allowed'}`}
+                    'bg-white/[0.01] border border-white/[0.05] rounded-[16px] opacity-50 cursor-not-allowed'}`}
               >
                 <div className="flex flex-col items-center justify-center relative z-10">
-                  <span className={`text-[10px] uppercase tracking-[0.2em] font-bold mb-1 ${isActive ? 'text-primary' : 'text-on-surface-micro'}`}>{d.month}</span>
-                  <span className={`text-[26px] font-bold relative z-10 font-serif ${isActive ? 'text-on-surface' : 'text-white'}`}>{d.date}</span>
+                  <span className={`text-[10px] uppercase tracking-[0.2em] font-bold mb-1 ${isActive ? 'text-primary' : 'text-on-surface'}`}>{d.month}</span>
+                  <span className={`text-[26px] font-bold relative z-10 font-serif ${isActive ? 'text-on-surface' : 'text-white'} ${d.available ? '' : 'line-through'}`}>{d.date}</span>
                 </div>
               </motion.div>
             );
@@ -162,7 +162,7 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
 
       <div className="flex flex-col gap-8">
         <section>
-          <h3 className="text-[10px] uppercase tracking-[0.2em] font-medium text-[var(--color-on-surface-micro)] mb-4">AVAILABLE TIMES</h3>
+          <h3 className="text-[10px] uppercase tracking-[0.2em] font-medium text-on-surface mb-4">AVAILABLE TIMES</h3>
           <motion.div 
             animate={shakeField === 'time' ? shakeAnimation : {}}
             className="space-y-3"
@@ -198,7 +198,7 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
         </section>
 
         <section>
-          <h3 className="text-[10px] uppercase tracking-[0.2em] font-medium text-[var(--color-on-surface-micro)] mb-4">INSTRUCTOR</h3>
+          <h3 className="text-[10px] uppercase tracking-[0.2em] font-medium text-on-surface mb-4">INSTRUCTOR</h3>
           <motion.div 
             animate={shakeField === 'instructor' ? shakeAnimation : {}}
             className="grid grid-cols-3 gap-3"
@@ -219,7 +219,7 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
                     </span>
                   </div>
                 </div>
-                <h4 className={`relative z-10 text-[14px] leading-tight tracking-wide font-semibold font-sans mt-1.5 ${selectedInstructorId === instructor.id ? 'text-primary' : 'text-on-surface-variant'}`}>
+                <h4 className={`relative z-10 text-[14px] leading-tight tracking-wide font-semibold font-sans mt-1.5 ${selectedInstructorId === instructor.id ? 'text-primary' : 'text-on-surface'}`}>
                   {instructor.name.split(' ').map((part, i) => (
                     <span key={i} className="block">{part}</span>
                   ))}
@@ -231,7 +231,7 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
       </div>
 
       <div className="mt-12">
-        <h3 className="text-[10px] uppercase tracking-[0.2em] font-medium text-[var(--color-on-surface-micro)] mb-4">CONFIRM SELECTION</h3>
+        <h3 className="text-[10px] uppercase tracking-[0.2em] font-medium text-on-surface mb-4">CONFIRM SELECTION</h3>
         <motion.div 
           initial={{ y: 40, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -250,7 +250,7 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
               </div>
 
               <div className="flex-1 min-w-0 flex flex-col justify-center gap-1">
-                <p className="font-sans text-[9px] text-[var(--color-on-surface-micro)] tracking-[0.2em] uppercase">Scheduled Lesson</p>
+                <p className="font-sans text-[9px] text-on-surface tracking-[0.2em] uppercase">Scheduled Lesson</p>
                 <h3 className="text-[18px] font-bold text-white tracking-tight leading-tight truncate">
                   Session {nextSessionNum}
                 </h3>
@@ -444,7 +444,7 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
                   >
                     Back to Dashboard
                   </motion.button>
-                  <p className="font-sans text-[10px] text-white/40 font-medium tracking-wide text-center mt-3">
+                  <p className="font-sans text-[10px] text-white/70 font-medium tracking-wide text-center mt-3">
                     A confirmation email is on its way.
                   </p>
                 </div>

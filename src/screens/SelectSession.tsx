@@ -334,7 +334,7 @@ export default function SelectSession({ lessons, onConfirmBooking, onBack }: Sel
             className="fixed inset-0 z-[100] flex items-center justify-center px-4 sm:px-6"
           >
             <div
-              className="absolute inset-0 bg-[#080F0E]/80 backdrop-blur-md"
+              className="absolute inset-0 bg-[#121316]/80 backdrop-blur-md"
               onClick={() => { setBookingConfirmed(false); onConfirmBooking(confirmedLesson); }}
             />
             <motion.div

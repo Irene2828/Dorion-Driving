@@ -73,7 +73,7 @@ export default function Dashboard({ lessons, onAddLesson, onReschedule, onCancel
       exit={{ opacity: 0 }}
       className="min-h-screen pb-[calc(72px+48px+env(safe-area-inset-bottom,0px))]"
     >
-      <header className="fixed top-0 inset-x-0 h-24 z-50 bg-[#080F0E]/40 backdrop-blur-2xl border-b border-white/[0.05] flex justify-center pt-8 px-4 sm:px-6">
+      <header className="fixed top-0 inset-x-0 h-24 z-50 bg-[#121316]/40 backdrop-blur-2xl border-b border-white/[0.05] flex justify-center pt-8 px-4 sm:px-6">
         <div className="w-full max-w-[600px] flex items-center justify-between relative">
           
           {/* Left: Icon + Wordmark lockup */}
@@ -363,7 +363,7 @@ export default function Dashboard({ lessons, onAddLesson, onReschedule, onCancel
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-[100] flex items-center justify-center px-4 sm:px-6"
           >
-            <div className="absolute inset-0 bg-[#080F0E]/80 backdrop-blur-md" onClick={() => setShowCancelConfirm(false)} />
+            <div className="absolute inset-0 bg-[#121316]/80 backdrop-blur-md" onClick={() => setShowCancelConfirm(false)} />
             <motion.div 
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
@@ -449,7 +449,7 @@ export default function Dashboard({ lessons, onAddLesson, onReschedule, onCancel
             className="fixed inset-0 z-[100] flex items-center justify-center px-4 sm:px-6"
           >
             <div
-              className="absolute inset-0 bg-[#080F0E]/80 backdrop-blur-md"
+              className="absolute inset-0 bg-[#121316]/80 backdrop-blur-md"
               onClick={() => setShowCancelledConfirmation(false)}
             />
             <motion.div

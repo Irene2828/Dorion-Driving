@@ -34,15 +34,15 @@ export default function BottomNav({
             <motion.button 
               onClick={() => !isTabDisabled('schedule') && onTabChange?.('schedule')}
               whileTap={{ scale: isTabDisabled('schedule') ? 1 : 0.9 }}
-              className={`flex flex-col items-center gap-1 focus-visible:outline-none transition-opacity ${isTabDisabled('schedule') ? 'opacity-40 pointer-events-none' : ''}`}
+              className={`flex flex-col items-center gap-1 focus-visible:outline-none transition-opacity ${isTabDisabled('schedule') ? 'opacity-70 pointer-events-none' : ''}`}
             >
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={activeTab === 'schedule' ? 'var(--color-primary)' : '#F0EDE866'} strokeWidth="1.5" strokeLinecap="round">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={activeTab === 'schedule' ? 'var(--color-primary)' : '#F0EDE8B3'} strokeWidth="1.5" strokeLinecap="round">
                 <rect x="3" y="4" width="18" height="18" rx="2"/>
                 <line x1="16" y1="2" x2="16" y2="6"/>
                 <line x1="8" y1="2" x2="8" y2="6"/>
                 <line x1="3" y1="10" x2="21" y2="10"/>
               </svg>
-              <span className={`text-[11px] tracking-wide font-semibold ${activeTab === 'schedule' ? 'text-primary' : 'text-on-surface-variant'}`}>Schedule</span>
+              <span className={`text-[11px] tracking-wide font-semibold ${activeTab === 'schedule' ? 'text-primary' : 'text-on-surface'}`}>Schedule</span>
               {activeTab === 'schedule' && !isTabDisabled('schedule') && <motion.div layoutId="navUnderline" className="absolute bottom-2 w-4 h-[2px] rounded-full bg-primary" />}
             </motion.button>
 
@@ -50,13 +50,13 @@ export default function BottomNav({
             <motion.button 
               onClick={() => !isTabDisabled('study') && onTabChange?.('study')}
               whileTap={{ scale: isTabDisabled('study') ? 1 : 0.9 }}
-              className={`flex flex-col items-center gap-1 focus-visible:outline-none transition-opacity ${isTabDisabled('study') ? 'opacity-40 pointer-events-none' : ''}`}
+              className={`flex flex-col items-center gap-1 focus-visible:outline-none transition-opacity ${isTabDisabled('study') ? 'opacity-70 pointer-events-none' : ''}`}
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={activeTab === 'study' ? 'var(--color-primary)' : '#F0EDE866'} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={activeTab === 'study' ? 'var(--color-primary)' : '#F0EDE8B3'} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
                 <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
               </svg>
-              <span className={`text-[11px] tracking-wide font-semibold ${activeTab === 'study' ? 'text-primary' : 'text-on-surface-variant'}`}>Study</span>
+              <span className={`text-[11px] tracking-wide font-semibold ${activeTab === 'study' ? 'text-primary' : 'text-on-surface'}`}>Study</span>
               {activeTab === 'study' && !isTabDisabled('study') && <motion.div layoutId="navUnderline" className="absolute bottom-2 w-4 h-[2px] rounded-full bg-primary" />}
             </motion.button>
 
@@ -90,13 +90,13 @@ export default function BottomNav({
             <motion.button 
               onClick={() => !isTabDisabled('payments') && onTabChange?.('payments')}
               whileTap={{ scale: isTabDisabled('payments') ? 1 : 0.9 }}
-              className={`flex flex-col items-center gap-1 focus-visible:outline-none transition-opacity ${isTabDisabled('payments') ? 'opacity-40 pointer-events-none' : ''}`}
+              className={`flex flex-col items-center gap-1 focus-visible:outline-none transition-opacity ${isTabDisabled('payments') ? 'opacity-70 pointer-events-none' : ''}`}
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={activeTab === 'payments' ? 'var(--color-primary)' : '#F0EDE866'} strokeWidth="1.5" strokeLinecap="round">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={activeTab === 'payments' ? 'var(--color-primary)' : '#F0EDE8B3'} strokeWidth="1.5" strokeLinecap="round">
                 <rect x="2" y="5" width="20" height="14" rx="2"/>
                 <line x1="2" y1="10" x2="22" y2="10"/>
               </svg>
-              <span className={`text-[11px] tracking-wide font-semibold ${activeTab === 'payments' ? 'text-primary' : 'text-on-surface-variant'}`}>Bills</span>
+              <span className={`text-[11px] tracking-wide font-semibold ${activeTab === 'payments' ? 'text-primary' : 'text-on-surface'}`}>Bills</span>
               {activeTab === 'payments' && !isTabDisabled('payments') && <motion.div layoutId="navUnderline" className="absolute bottom-2 w-4 h-[2px] rounded-full bg-primary" />}
             </motion.button>
 
@@ -104,12 +104,12 @@ export default function BottomNav({
             <motion.button 
               onClick={() => !isTabDisabled('profile') && onTabChange?.('profile')}
               whileTap={{ scale: isTabDisabled('profile') ? 1 : 0.9 }}
-              className={`flex flex-col items-center gap-1 focus-visible:outline-none transition-opacity ${isTabDisabled('profile') ? 'opacity-40 pointer-events-none' : ''}`}
+              className={`flex flex-col items-center gap-1 focus-visible:outline-none transition-opacity ${isTabDisabled('profile') ? 'opacity-70 pointer-events-none' : ''}`}
             >
               <div className={`w-5 h-5 rounded-full border-[1.5px] ${activeTab === 'profile' ? 'border-primary' : 'border-on-surface-variant'} flex items-center justify-center bg-white/5`}>
-                <div className={`w-3 h-3 rounded-full ${activeTab === 'profile' ? 'bg-primary' : 'bg-on-surface-variant/40'}`} />
+                <div className={`w-3 h-3 rounded-full ${activeTab === 'profile' ? 'bg-primary' : 'bg-on-surface-variant/70'}`} />
               </div>
-              <span className={`text-[11px] tracking-wide font-semibold ${activeTab === 'profile' ? 'text-primary' : 'text-on-surface-variant'}`}>Profile</span>
+              <span className={`text-[11px] tracking-wide font-semibold ${activeTab === 'profile' ? 'text-primary' : 'text-on-surface'}`}>Profile</span>
               {activeTab === 'profile' && !isTabDisabled('profile') && <motion.div layoutId="navUnderline" className="absolute bottom-2 w-4 h-[2px] rounded-full bg-primary" />}
             </motion.button>
         </div>

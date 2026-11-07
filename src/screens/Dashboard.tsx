@@ -38,7 +38,7 @@ const EmptyScheduleState = () => {
       <h3 className="font-serif text-[20px] text-white tracking-wide mb-2 relative z-10">
         Your Schedule is Clear
       </h3>
-      <p className="font-sans text-[14px] text-white/50 text-center max-w-[240px] leading-relaxed relative z-10">
+      <p className="font-sans text-[14px] text-white/70 text-center max-w-[240px] leading-relaxed relative z-10">
         You have no upcoming drives. Tap the new lesson button to get back behind the wheel.
       </p>
 
@@ -216,7 +216,7 @@ export default function Dashboard({ lessons, onAddLesson, onReschedule, onCancel
 
             <section className="space-y-4 mt-8">
               <div className="flex justify-between items-center px-1">
-                <h3 className="text-[10px] uppercase tracking-[0.2em] font-medium text-on-surface-variant">MANAGE YOUR SCHEDULE</h3>
+                <h3 className="text-[10px] uppercase tracking-[0.2em] font-medium text-on-surface">MANAGE YOUR SCHEDULE</h3>
                 <button className="relative w-8 h-8 rounded-full border border-outline-variant flex items-center justify-center bg-surface-container text-primary hover:text-on-surface transition-colors active:scale-95" aria-label="More options">
                   <MoreHorizontal size={16} />
                 </button>
@@ -389,14 +389,14 @@ export default function Dashboard({ lessons, onAddLesson, onReschedule, onCancel
                 </p>
 
                 <div className="w-full bg-surface-container border border-outline-variant rounded-[24px] p-5 mb-8 text-left relative z-10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]">
-                  <p className="font-sans text-[9px] text-on-surface-variant tracking-[0.2em] uppercase mb-4">Cancellation Policy</p>
+                  <p className="font-sans text-[9px] text-on-surface tracking-[0.2em] uppercase mb-4">Cancellation Policy</p>
                   <div className="flex flex-col gap-4">
                     <div className="flex items-start gap-3">
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="mt-0.5 shrink-0 text-primary">
                         <circle cx="12" cy="12" r="10" />
                         <polyline points="12 6 12 12 16 14" />
                       </svg>
-                      <p className="text-[13px] text-on-surface-variant font-medium leading-snug">
+                      <p className="text-[13px] text-on-surface font-medium leading-snug">
                         Within 24h notice — a 50% late cancellation fee applies.
                       </p>
                     </div>
@@ -407,7 +407,7 @@ export default function Dashboard({ lessons, onAddLesson, onReschedule, onCancel
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="mt-0.5 shrink-0 text-primary">
                         <polyline points="20 6 9 17 4 12" />
                       </svg>
-                      <p className="text-[13px] text-on-surface-variant font-medium leading-snug">
+                      <p className="text-[13px] text-on-surface font-medium leading-snug">
                         24h+ notice — full lesson credit will be issued.
                       </p>
                     </div>
